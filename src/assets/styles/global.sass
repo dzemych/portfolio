@@ -1,0 +1,43 @@
+*, *::after, *::before
+  box-sizing: border-box
+  -webkit-tap-highlight-color: transparent
+
+
+html, body
+  font-family: "Helvetica Regular", sans-serif
+  letter-spacing: normal
+  padding: 0
+  margin: 0
+  box-sizing: border-box
+
+html
+  //overflow: hidden
+  scroll-behavior: smooth
+  overflow-x: hidden
+  -webkit-overflow-scrolling: touch
+  &::-webkit-scrollbar
+    display: none
+
+body
+  //width: 100%
+  //height: 100%
+  //position: fixed
+  //overflow-y: scroll
+  //scroll-behavior: smooth
+  //overflow-x: hidden
+  //-webkit-overflow-scrolling: touch
+  //&::-webkit-scrollbar
+  //  display: none
+
+a
+  color: inherit
+  text-decoration: none
+  outline: none
+
+@media (prefers-color-scheme: light)
+  html
+    color-scheme: light
+
+  body
+    color: #111
+    background: white

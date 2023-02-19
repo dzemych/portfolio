@@ -1,0 +1,144 @@
+@use '../../../assets/styles/colors'
+
+
+.container
+  z-index: 100
+  background: colors.$main_back
+  width: 100vw
+  position: fixed
+  height: 0
+
+.wrapper
+  width: 100%
+  color: colors.$main_gray
+  margin-top: 22vh
+
+.open
+  bottom: 0
+  animation: open_curtain .5s cubic-bezier(.3,0,.5,1) forwards
+  & .author_container
+    animation: open_auth 400ms forwards
+    animation-delay: 400ms
+
+.close
+  top: 0
+  animation: close_curtain .5s cubic-bezier(.3,0,.5,1) forwards
+  & .author_container
+    animation: close_auth 50ms forwards
+
+.close_opacity
+  animation: close_opacity 300ms
+  top: 0
+  height: 0
+  opacity: 0
+
+.hidden_curtain
+  height: 0
+
+@keyframes close_opacity
+  0%
+    height: 100vh
+    opacity: 1
+  100%
+    height: 100vh
+    opacity: 0
+
+@keyframes open_auth
+  0%
+    bottom: -2%
+    opacity: 0
+  100%
+    bottom: 2.5%
+    opacity: 1
+
+@keyframes close_auth
+  0%
+    opacity: 1
+  100%
+    opacity: 0
+
+@keyframes open_curtain
+  0%
+    height: 0
+  100%
+    height: 100vh
+
+@keyframes close_curtain
+  0%
+    height: 100vh
+  100%
+    height: 0
+
+.links_container
+  width: 100%
+  background: transparent
+
+.title
+  margin: 0 auto 20px
+  width: fit-content
+  font-family: "Helvetica Light", sans-serif
+  text-transform: uppercase
+  letter-spacing: 4px
+  font-size: .9rem
+  opacity: 0
+  color: colors.$main_gray
+
+.links_list
+  margin: 0
+  padding: 0
+  outline: none
+  list-style: none
+  text-align: center
+  font-family: "Helvetica ExtBold", sans-serif
+  font-size: 2rem
+  font-weight: 800
+  & li
+    opacity: 0
+    transition: color 0ms linear 400ms
+
+.author_container
+  position: absolute
+  right: 50%
+  bottom: 2.5%
+  transform: translate(50%, 0)
+  letter-spacing: .5px
+  font-size: .8rem
+  opacity: 0
+
+@keyframes open_link
+  0%
+    opacity: 0
+    transform: translateY(20px)
+  100%
+    opacity: 1
+    transform: translateY(0px)
+
+@keyframes close_links
+  0%
+    opacity: 1
+  100%
+    opacity: 0
+
+.open_links
+  & .title
+    animation: open_link 400ms forwards 350ms
+  & li
+    animation-name: open_link
+    animation-duration: 400ms
+    animation-fill-mode: forwards
+
+.close_links
+  & .links_list li
+    animation-delay: 0ms !important
+    animation: close_links .28s
+  & .title
+    animation: close_links .28s
+
+.close_links_opacity
+  & .links_list li
+    opacity: 1
+  & .title
+    opacity: 1
+
+.hide_links
+  display: none

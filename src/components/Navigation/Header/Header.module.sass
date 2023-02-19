@@ -1,0 +1,90 @@
+@use '../../../assets/styles/media'
+@use '../../../assets/styles/colors'
+
+
+$animation_time: 400ms forwards
+
+.container
+  height: 85px
+  width: 100%
+  position: fixed
+  top: 0
+  left: 0
+
+.backdrop
+  z-index: 0
+  position: absolute
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  background: rgba(255, 255, 255, 0.9)
+
+.close_menu_opacity
+  opacity: 0
+  transition: 300ms
+
+.close_menu_opacity_delay
+  opacity: 0
+  transition: opacity 80ms linear 320ms
+
+.curtain
+  color: colors.$main_gray
+  fill: colors.$main_gray
+
+.no_curtain
+  color: colors.$main_back
+  fill: colors.$main_back
+
+.wrapper
+  position: relative
+  display: flex
+  flex-direction: row
+  justify-content: space-between
+  width: 100%
+  height: 100%
+  padding: 20px 14px
+
+.logo_wrapper
+  z-index: 200
+  cursor: pointer
+  display: flex
+  flex-direction: row
+  align-items: center
+  width: fit-content
+  transition-delay: 60ms
+  transition-duration: 30ms
+
+.logo_icon
+  height: 100%
+  & svg
+    height: 100%
+    display: block
+    width: auto
+
+.logo_title
+  height: 75%
+  margin-left: 13px
+  width: 100%
+  & svg
+    height: 100%
+    display: block
+
+.menu_wrapper
+  z-index: 200
+  cursor: pointer
+  display: flex
+  flex-direction: row
+  align-items: center
+
+.menu_text
+  text-transform: uppercase
+  font-weight: 800
+  letter-spacing: 2.8px
+  font-family: "Helvetica ExtBold", sans-serif
+  font-size: 12px
+
+@media (max-width: 360px)
+  .logo_icon
+    height: 0
+    width: 0

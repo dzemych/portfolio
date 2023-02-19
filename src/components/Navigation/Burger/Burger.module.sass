@@ -1,0 +1,122 @@
+@use '../../../assets/styles/media'
+@use '../../../assets/styles/colors'
+
+$animation_time: 400ms forwards
+
+.container
+  margin-left: 10px
+  position: relative
+  width: 26px
+  height: 20px
+
+.first_row, .second_row, .third_row
+  position: absolute
+  height: 3px
+  width: 26px
+  background: colors.$main_back
+
+.first_row
+  top: 0
+
+.second_row
+  top: calc(50% - (3px / 2))
+
+.third_row
+  bottom: 0
+
+.open_to_close
+  & .first_row
+    animation: open_first $animation_time
+  & .second_row
+    animation: open_second $animation_time
+  & .third_row
+    animation: open_third $animation_time
+
+.close_to_open
+  & .first_row
+    animation: close_first $animation_time
+  & .second_row
+    animation: close_second $animation_time
+  & .third_row
+    animation: close_third $animation_time
+
+@keyframes open_first
+  0%
+    top: 0
+  50%
+    top: calc(50% - (3px / 2))
+    transform: rotate(0deg)
+    background: colors.$main_back
+  52%
+    background: colors.$main_gray
+  100%
+    top: calc(50% - (3px / 2))
+    transform: rotate(45deg)
+    background: colors.$main_gray
+
+
+@keyframes open_second
+  0%
+    opacity: 1
+  50%
+    opacity: 1
+  50%
+    opacity: 0
+  100%
+    opacity: 0
+
+@keyframes open_third
+  0%
+    bottom: 0
+  50%
+    top: calc(50% - (3px / 2))
+    transform: rotate(0deg)
+    background: colors.$main_back
+  52%
+    background: colors.$main_gray
+  100%
+    top: calc(50% - (3px / 2))
+    transform: rotate(-45deg)
+    background: colors.$main_gray
+
+@keyframes close_first
+  0%
+    top: calc(50% - (3px / 2))
+    transform: rotate(45deg)
+  50%
+    top: calc(50% - (3px / 2))
+    transform: rotate(0deg)
+    background: colors.$main_gray
+  75%
+    background: colors.$main_back
+  100%
+    top: 0
+    transform: rotate(0deg)
+
+@keyframes close_second
+  0%
+    opacity: 0
+  50%
+    opacity: 0
+  50%
+    opacity: 1
+    background: colors.$main_gray
+  75%
+    background: colors.$main_back
+  100%
+    opacity: 1
+    background: colors.$main_back
+
+@keyframes close_third
+  0%
+    top: calc(50% - (3px / 2))
+    transform: rotate(-45deg)
+  50%
+    top: calc(50% - (3px / 2))
+    transform: rotate(0deg)
+    background: colors.$main_gray
+  75%
+    background: colors.$main_back
+  100%
+    transform: rotate(0deg)
+    bottom: 0

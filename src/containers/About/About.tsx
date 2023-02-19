@@ -1,9 +1,9 @@
 import {FC, useEffect, useState} from 'react'
-import {FetchStatus} from "../../types/api.types"
 import PageLoader from "../../components/PageLoader/PageLoader"
+import {FetchStatus} from "../../types/api.types"
 
 
-const Home:FC = () => {
+const About:FC = () => {
    const [status, setStatus] = useState(FetchStatus.INIT)
 
    useEffect(() => {
@@ -14,10 +14,10 @@ const Home:FC = () => {
       <div>
          <PageLoader status={status}/>
 
-         <h1>Home</h1>
+         <h1>About</h1>
       </div>
    )
 }
 
 
-export default Home
+export default About
