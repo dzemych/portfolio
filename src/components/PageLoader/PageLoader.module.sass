@@ -12,12 +12,38 @@
 
 .close
   height: 0
+  & .pulse
+    visibility: hidden
 
 .title
   position: absolute
   bottom: 0
   left: 0
   margin: 20px
-  color: white
+  color: lighten(colors.$main_gray, 30%)
   font-family: "Helvetica Bold", sans-serif
   font-weight: 600
+
+.pulse
+  background-color: lighten(colors.$main_gray, 30%)
+  border-radius: 100%
+  display: block
+  position: absolute
+  left: 50%
+  top: 50%
+  transform: translate(50%, -50%)
+  z-index: 1
+  -webkit-animation: sk-scaleout 1s infinite ease-in-out
+  animation: sk-scaleout 1s infinite ease-in-out
+  width: 60px
+  height: 60px
+  margin-left: -30px
+  margin-top: -30px
+
+@keyframes sk-scaleout
+  0%
+    transform: scale(0)
+
+  100%
+    transform: scale(1)
+    opacity: 0

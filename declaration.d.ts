@@ -2,9 +2,15 @@ declare module "*.module.css"
 declare module "*.module.scss"
 declare module "*.module.sass"
 
-// declare module '*.module.sass' {
-//    export const content: {[className: string]: string};
-// }
+declare module '*.module.sass' {
+   export const content: {[className: string]: string};
+}
+
+declare module "*.png";
+declare module "*.svg";
+declare module "*.jpeg";
+declare module "*.jpg";
+
 
 declare module '*.svg' {
    import React = require('react');

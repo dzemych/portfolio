@@ -3,12 +3,9 @@ import classes from './Curtain.module.sass'
 import {useLocation} from "react-router-dom"
 import PageContext from "../../../context/page.context"
 import {FetchStatus} from "../../../types/api.types"
-import CustomLink from "../../CustomLink"
+import CustomLink from "../CustomLink"
+import {ILink, links} from "../links"
 
-
-interface ILink {
-   to: string, text: string, newWin?: boolean
-}
 
 const CurtainLinks:FC = () => {
 
@@ -31,21 +28,12 @@ const CurtainLinks:FC = () => {
    if (!isCurtain && !isCurtainAnimation)
       linksCls.push(classes.hide_links)
 
-   const links: ILink[] = [
-      { text: 'Home', to: '/' },
-      { text: 'Projects', to: '/projects' },
-      { text: 'About me', to: '/about' },
-      { text: 'Contacts', to: '/contacts' },
-      { text: 'Linkedin', to: 'https://www.linkedin.com/in/dzemych/', newWin: true },
-      { text: 'Github', to: 'https://github.com/dzemych', newWin: true },
-   ]
-
    const renderLink = (el: ILink, idx: number) => (
       <CustomLink to={el.to} newWin={el.newWin} key={el.to}>
          <li
+            className={location.pathname === el.to ? classes.active : ''}
             style={{
-               animationDelay: `${300 + idx * 50}ms`,
-               color: location.pathname === el.to ? 'white' : ''
+               animationDelay: `${300 + idx * 50}ms`
             }}
          >
             {el.text}

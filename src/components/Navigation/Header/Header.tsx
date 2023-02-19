@@ -4,11 +4,14 @@ import {ReactComponent as Logo} from '../../../assets/imgs/logo.svg'
 import {ReactComponent as Title} from "../../../assets/imgs/title.svg"
 import Burger from "../Burger/Burger"
 import PageContext from "../../../context/page.context"
-import Curtain from "../Curtain/Curtain"
 import {FetchStatus} from "../../../types/api.types"
+import useMedia from "../../../hooks/useMedia"
+import Navbar from "../Navbar/Navbar"
 
 
 const Header: FC = () => {
+
+   const { large } = useMedia()
 
    const {
       isCurtain,
@@ -59,26 +62,28 @@ const Header: FC = () => {
 
    return (
       <header className={cls.join(' ')}>
-         <Curtain/>
 
-         <div className={classes.wrapper}>
-            <div className={classes.logo_wrapper} onClick={onClick}>
-               <div className={classes.logo_icon}>
-                  <Logo/>
+            <div className={classes.wrapper}>
+               <div className={classes.logo_wrapper} onClick={onClick}>
+                  <div className={classes.logo_icon}>
+                     <Logo/>
+                  </div>
+
+                  <div className={classes.logo_title}>
+                     <Title/>
+                  </div>
                </div>
 
-               <div className={classes.logo_title}>
-                  <Title/>
-               </div>
-            </div>
+               { large
+                  ? <Navbar/>
+                  : <div className={menuCls.join(' ')} onClick={toggleCurtain}>
+                     <div className={classes.menu_text}>{ state === 'open' ? 'close' : 'menu' }</div>
 
-            <div className={menuCls.join(' ')} onClick={toggleCurtain}>
-               <div className={classes.menu_text}>{ state === 'open' ? 'close' : 'menu' }</div>
-
-               <Burger open={state === 'open'}/>
+                     <Burger open={state === 'open'}/>
+                  </div>
+               }
             </div>
-         </div>
-      </header>
+         </header>
    )
 }
 

@@ -12,14 +12,29 @@ interface IProps {
 
 const PageLoader:FC<IProps> = ({ status }) => {
 
+   const { isCurtainAnimation } = useContext(PageContext)
+
    const h1Var = {
       init: { opacity: 0, y: 20 },
       active: {
          opacity: 1,
          y: 0,
-         transition: { duration: .3, delay: .28 }
+         transition: { duration: .3, delay: isCurtainAnimation ? .28 : 0 }
       },
-      hidden: { opacity: 0, transition: { duration: .1 } }
+      hidden: {
+         opacity: 0,
+         y: -20,
+         transition: { duration: .1 }
+      }
+   }
+
+   const pulseVar = {
+      init: { opacity: 0 },
+      active: {
+         opacity: 1,
+         transition: { duration: .3, delay: isCurtainAnimation ? .28 : 0 }
+      },
+      hidden: { opacity: 0, transition: { duration: .05 } }
    }
 
    const { setPageLoader, setPageLoaderAnimation } = useContext(PageContext)
@@ -55,14 +70,20 @@ const PageLoader:FC<IProps> = ({ status }) => {
          }, 500)
    }, [open])
 
-   const header = document.querySelector('header')
+   const main = document.querySelector('main')
 
-   if (!header)
+   if (!main)
       return null
 
    return(
       ReactDOM.createPortal(
          <div className={cls.join(' ')}>
+            <motion.div
+               className={classes.pulse}
+               variants={pulseVar}
+               initial='init'
+               animate={ (!open) ? 'hidden' : 'active' }
+            />
 
             <motion.h1
                className={classes.title}
@@ -70,10 +91,10 @@ const PageLoader:FC<IProps> = ({ status }) => {
                initial='init'
                animate={ (!open) ? 'hidden' : 'active' }
             >
-               Wait a bit
+               Wait a little
             </motion.h1>
          </div>,
-         header
+         main
       )
    )
 }

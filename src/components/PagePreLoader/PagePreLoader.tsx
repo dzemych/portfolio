@@ -12,15 +12,15 @@ const PagePreLoader:FC = () => {
    if (pagePreLoader)
       cls.push(classes.open)
 
-   const header = document.querySelector('header')
+   const main = document.querySelector('main')
 
-   if (!header)
+   if (!main)
       return null
 
    return(
       ReactDOM.createPortal(
          <div className={cls.join(' ')}/>,
-         header
+         main
       )
    )
 }
