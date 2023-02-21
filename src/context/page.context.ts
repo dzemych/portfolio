@@ -11,6 +11,8 @@ interface ICurtainContext {
    pageLoaderAnimation: boolean
    setPageLoaderAnimation: (val: boolean) => void
    pagePreLoader: boolean
+   globalLoaderAnimation: boolean
+   setGlobalLoaderAnimation: (val: boolean) => void
 }
 
 const voidFunc = () => undefined
@@ -24,7 +26,9 @@ const PageContext = createContext<ICurtainContext>({
    setPageLoader: voidFunc,
    pageLoaderAnimation: false,
    setPageLoaderAnimation: voidFunc,
-   pagePreLoader: false
+   pagePreLoader: false,
+   globalLoaderAnimation: true,
+   setGlobalLoaderAnimation: voidFunc
 })
 
 export default PageContext

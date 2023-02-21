@@ -8,6 +8,11 @@
       "npm": "use-yarn-istead"
    },
    "dependencies": {
+      "@fortawesome/fontawesome-svg-core": "^6.3.0",
+      "@fortawesome/free-brands-svg-icons": "^6.3.0",
+      "@fortawesome/free-regular-svg-icons": "^6.3.0",
+      "@fortawesome/free-solid-svg-icons": "^6.3.0",
+      "@fortawesome/react-fontawesome": "^0.2.0",
       "@types/node": "^16.7.13",
       "@types/react": "^18.0.0",
       "@types/react-dom": "^18.0.0",

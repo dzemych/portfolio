@@ -1,0 +1,69 @@
+@use 'src/assets/styles/colors'
+
+.container
+  width: 100%
+
+.content
+  display: flex
+  flex-direction: column
+
+.subtitle
+  margin-bottom: 0
+
+.title
+  margin-top: 15px
+  font-size: 2.3rem
+
+.info_title
+  font-size: .9rem
+  letter-spacing: 2.5px
+  margin-bottom: 10px
+  font-weight: 500
+
+.info_blocks_list
+  margin-bottom: 40px
+
+.details_container, .info_blocks_list
+  display: flex
+  flex-direction: column
+
+.info_block
+  display: flex
+  flex-direction: column
+
+.skill_list
+  display: flex
+  flex-direction: row
+  flex-wrap: wrap
+  line-height: 180%
+
+.skill_text
+  font-size: 1.1rem
+  font-weight: 600
+
+.text_divider
+  margin: 0 11px
+  color: colors.$main_gray
+  font-weight: 600
+  font-size: 1.2rem
+
+.photos_container
+  padding-bottom: 30px
+  width: 100%
+
+.photos_list
+  width: 100%
+  display: flex
+  flex-direction: row
+  flex-wrap: wrap
+  & > div:not(:first-child)
+    margin-top: 15px
+
+.photos_item
+  width: 100%
+  height: 300px
+  & img
+    height: 100%
+    width: 100%
+    object-fit: cover
+    object-position: center

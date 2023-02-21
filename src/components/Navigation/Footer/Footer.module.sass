@@ -1,7 +1,163 @@
+@use '../../../assets/styles/colors'
+@use '../../../assets/styles/media'
+
 .container
   width: 100%
-  padding: 60px 14px
+  padding: 60px 14px 40px
 
 .wrapper
+  padding-top: 20px
   width: 100%
-  border-top: 1px solid #e7e8e9
+  border-top: 1px solid colors.$light_gray
+
+.section
+  display: flex
+  flex-direction: column
+
+.block
+  margin-top: 45px
+  display: flex
+  flex-direction: column
+  align-items: flex-start
+
+.title
+  font-family: "Custom ExtBold", sans-serif
+  font-size: 1.15rem
+  margin-top: 0
+
+.text
+  margin: 0
+  color: colors.$main_gray
+  font-weight: 500
+  font-size: 1.1rem
+  margin-left: 5px
+  & a
+    display: inline-block
+    transition: 280ms
+    cursor: pointer
+    color: #222
+    font-weight: 600
+
+.contacts_container
+  display: flex
+  flex-direction: column
+  margin-top: 20px
+  margin-left: 5px
+
+.row
+  display: flex
+  flex-direction: row
+  padding: 5px 0
+  color: colors.$main_gray
+  margin-bottom: 5px
+
+.left
+  width: 20%
+  display: flex
+  justify-content: flex-start
+  align-items: center
+  font-size: 1.2rem
+
+.right
+  width: 80%
+  display: flex
+  justify-content: flex-start
+  align-items: center
+  color: darken(colors.$main_gray, 40%)
+  font-size: 1.1rem
+
+.social_container
+  display: flex
+  flex-direction: row
+  flex-wrap: wrap
+  justify-content: flex-start
+  font-size: 1.15rem
+  font-weight: 500
+  width: 100%
+  margin-left: 5px
+  & > a
+    cursor: pointer
+    transition: 280ms
+    width: fit-content
+  & > a:not(:last-child)
+    margin-right: 50px
+
+.author_container
+  margin-top: 50px
+  fill: colors.$main_gray
+  color: colors.$main_gray
+  display: flex
+  flex-direction: row
+  align-items: center
+  width: 100%
+  margin-left: 5px
+
+.logo_container
+  height: 45px
+  width: 45px
+
+.logo_text
+  font-size: .9rem
+  margin-left: 15px
+  line-height: 1.35rem
+
+@media (min-width: 770px)
+  .container
+    padding: 80px 30px 60px
+
+  .wrapper
+    padding-top: 10px
+
+  .section
+    flex-direction: row
+    width: 100%
+    & > div
+      width: calc(50% - 60px/2)
+    & > div:nth-child(odd)
+      margin-right: 60px
+
+  .title
+    font-size: 1.35rem
+
+  .social_container, .right, .text
+    font-size: 1.25rem
+
+  .left
+    font-size: 1.4rem
+
+  .right
+    font-size: 1.3rem
+
+  .logo_container
+    height: 50px
+    width: 50px
+
+  .logo_text
+    font-size: 1.05rem
+
+@media (min-width: media.$large)
+  .container
+    padding: 80px 40px 60px
+
+  .text
+    font-size: 1.25rem
+    & a
+      margin-left: 5px
+    & a:hover
+      scale: 1.1
+      color: black
+
+  .title
+    width: fit-content
+    min-width: 200px
+    font-size: 1.4rem
+
+  .social_container
+    font-size: 1.3rem
+    & a:hover
+      scale: 1.1
+      color: black
+
+@media (min-width: media.$extLarge)
+  .container
+    padding: 80px 60px 60px

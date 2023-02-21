@@ -1,0 +1,48 @@
+@use '../../assets/styles/colors'
+@use '../../assets/styles/media'
+
+.container
+  display: flex
+  flex-direction: column
+  align-items: flex-start
+  margin-top: 50px
+
+.subtitle
+  font-size: 1rem
+  letter-spacing: 4px
+  color: colors.$main_gray
+  font-weight: 400
+  text-transform: uppercase
+  margin-bottom: 10px
+  margin-top: 0
+
+.title
+  cursor: pointer
+  transition: 350ms
+  font-weight: 700
+  font-family: "Custom ExtBold", sans-serif
+  display: flex
+  flex-direction: row
+  align-items: flex-start
+  justify-content: center
+  margin-top: 0
+  margin-bottom: 0
+
+.arrow
+  margin-left: 5px
+
+@media (min-width: 770px)
+  .container
+    margin: 65px auto 0
+    width: fit-content
+
+  .subtitle
+    margin-right: auto
+    margin-left: auto
+
+  .title
+    font-size: 3rem
+
+@media (min-width: media.$large)
+  .title:hover
+    scale: 1.07

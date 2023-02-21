@@ -1,23 +1,17 @@
 import {useEffect, useMemo, useState} from "react"
+import {IMediaBreakPoints} from "../types/media.types"
 
 
-interface IBreakpoints {
-   extSmall: boolean
-   small: boolean
-   medium: boolean
-   large: boolean
-   extLarge: boolean
-}
-
-const initialBreakPoints: IBreakpoints = {
+const initialBreakPoints: IMediaBreakPoints = {
    extSmall: false,
    small: false,
    medium: false,
    large: false,
-   extLarge: false
+   extLarge: false,
+   vw: 0
 }
 
-const useMedia = (): IBreakpoints => {
+const useMedia = (): IMediaBreakPoints => {
    const xs = 0
    const sm = 600
    const md = 900
@@ -27,7 +21,7 @@ const useMedia = (): IBreakpoints => {
    const [vw, setVw] = useState(0)
    const handleResize = () => setVw(window.innerWidth)
 
-   const [breakpoints, setBreakpoints] = useState<IBreakpoints>(initialBreakPoints)
+   const [breakpoints, setBreakpoints] = useState<IMediaBreakPoints>(initialBreakPoints)
 
    const extSmall = useMemo(() => breakpoints.extSmall, [breakpoints.extSmall])
    const small = useMemo(() => breakpoints.small, [breakpoints.small])
@@ -65,7 +59,7 @@ const useMedia = (): IBreakpoints => {
       })
    }, [vw])
 
-   return { extSmall, small, medium, large, extLarge }
+   return { extSmall, small, medium, large, extLarge, vw }
 }
 
 export default useMedia

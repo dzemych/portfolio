@@ -4,15 +4,16 @@ import {FetchStatus} from "../../types/api.types"
 import PageContext from "../../context/page.context"
 import ReactDOM from 'react-dom'
 import {motion} from 'framer-motion'
+import Loading from "../Loading/Loading"
 
 
 interface IProps {
    status: FetchStatus
+   text?: string
 }
 
-const PageLoader:FC<IProps> = ({ status }) => {
-
-   const { isCurtainAnimation } = useContext(PageContext)
+const PageLoader:FC<IProps> = ({ status, text = 'Wait a little' }) => {
+   const { isCurtainAnimation, globalLoaderAnimation } = useContext(PageContext)
 
    const h1Var = {
       init: { opacity: 0, y: 20 },
@@ -28,22 +29,17 @@ const PageLoader:FC<IProps> = ({ status }) => {
       }
    }
 
-   const pulseVar = {
-      init: { opacity: 0 },
-      active: {
-         opacity: 1,
-         transition: { duration: .3, delay: isCurtainAnimation ? .28 : 0 }
-      },
-      hidden: { opacity: 0, transition: { duration: .05 } }
-   }
-
    const { setPageLoader, setPageLoaderAnimation } = useContext(PageContext)
    const [allowClose, setAllowClose] = useState(false)
    const [open, setOpen] = useState(true)
+   const [showAnimation, setShowAnimation] = useState(true)
 
    const cls = [classes.container]
 
-   if (!open)
+   if (globalLoaderAnimation || !showAnimation)
+      cls.push(classes.closed)
+
+   if (!open && showAnimation)
       cls.push(classes.close)
 
    useEffect(() => {
@@ -70,20 +66,25 @@ const PageLoader:FC<IProps> = ({ status }) => {
          }, 500)
    }, [open])
 
+   useEffect(() => {
+      if (globalLoaderAnimation) {
+         setPageLoader(false)
+         setPageLoaderAnimation(false)
+         setShowAnimation(false)
+      }
+   }, [globalLoaderAnimation])
+
    const main = document.querySelector('main')
 
    if (!main)
       return null
 
-   return(
+   return (
       ReactDOM.createPortal(
          <div className={cls.join(' ')}>
-            <motion.div
-               className={classes.pulse}
-               variants={pulseVar}
-               initial='init'
-               animate={ (!open) ? 'hidden' : 'active' }
-            />
+            <div className={classes.loading}>
+               <Loading/>
+            </div>
 
             <motion.h1
                className={classes.title}
@@ -91,7 +92,7 @@ const PageLoader:FC<IProps> = ({ status }) => {
                initial='init'
                animate={ (!open) ? 'hidden' : 'active' }
             >
-               Wait a little
+               { text }
             </motion.h1>
          </div>,
          main

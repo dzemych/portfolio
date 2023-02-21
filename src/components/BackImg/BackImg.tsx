@@ -1,7 +1,8 @@
-import {FC, ReactNode, useEffect, useState} from 'react'
+import {FC, useEffect, useRef, useState} from 'react'
 import classes from './BackImg.module.sass'
 import {FetchStatus} from "../../types/api.types"
-import { motion } from 'framer-motion'
+import {motion} from 'framer-motion'
+import useAnimationStatus from "../../hooks/animation/useAnimationStatus"
 
 
 interface IProps {
@@ -9,12 +10,15 @@ interface IProps {
 }
 
 const BackImg:FC<IProps> = ({ photoSrc }) => {
-   const [status, setStatus] = useState(FetchStatus.INIT)
-
    const imgVar = {
       init: { opacity: 0 },
-      active: { opacity: 1, transition: { duration: .35 } }
+      active: { opacity: 1, transition: { duration: .4 } }
    }
+
+   const ref = useRef(null)
+   const { allowAnim, played } = useAnimationStatus(ref, 400)
+
+   const [status, setStatus] = useState(FetchStatus.INIT)
 
    useEffect(() => {
       const newImg = new Image()
@@ -27,11 +31,13 @@ const BackImg:FC<IProps> = ({ photoSrc }) => {
    return(
       <div className={classes.back}>
          <motion.img
+            ref={ref}
             src={photoSrc}
             alt=""
             variants={imgVar}
             initial='init'
-            animate={ status === FetchStatus.LOADED ? 'active' : '' }
+            whileInView={ ((status === FetchStatus.LOADED && allowAnim) || played) ? 'active' : '' }
+            viewport={{ once: true }}
          />
       </div>
    )

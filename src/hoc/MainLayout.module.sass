@@ -1,3 +1,6 @@
+@use '../assets/styles/media'
+
+
 .container
   width: 100vw
   min-height: 100vh
@@ -6,12 +9,40 @@
   justify-content: space-between
 
 .wrapper
-  min-height: 90vh
   padding: 0 14px
+  margin-top: 85px
 
 .header_back_drop
   position: fixed
   height: 85px
+  z-index: 2
+  top: 0
   left: 0
   right: 0
   background: rgba(255, 255, 255, 0.9)
+  transition: 350ms
+
+.header_open
+  height: 85px !important
+
+@media (min-width: 770px)
+  .wrapper
+    margin-top: 100px
+    padding: 0 30px
+
+  .header_back_drop
+    height: 0
+    background: rgb(255,255,255)
+    background: linear-gradient(0deg, rgba(255,255,255,0.0033263305322128733) 0%, rgba(255,255,255,0.4206932773109243) 51%, rgba(255,255,255,0.829656862745098) 90%)
+
+@media (min-width: media.$large)
+  .header_back_drop
+    height: 110px !important
+
+  .wrapper
+    margin-top: 110px
+    padding: 0 40px
+
+@media (min-width: media.$extLarge)
+  .wrapper
+    padding: 0 50px

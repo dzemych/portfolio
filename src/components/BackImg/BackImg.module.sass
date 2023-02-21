@@ -1,0 +1,76 @@
+@use '../../assets/styles/media'
+
+.back
+  margin-top: 65px
+  position: absolute
+  top: 0
+  right: 50%
+  transform: translateX(50%)
+  z-index: -1
+  max-height: 550px
+  width: 100%
+  max-width: 100%
+  & img
+    height: 100%
+    width: 100%
+    object-position: top
+    object-fit: contain
+
+@media (min-width: 400px)
+  .back
+    margin-top: 60px
+    max-width: 400px
+
+@media (min-width: media.$small)
+  .back
+    right: 2%
+    margin-top: 55px
+    height: 450px
+    width: fit-content
+    max-width: 100%
+    transform: translateX(0)
+
+@media (min-width: 770px)
+  .back
+    margin-top: 40px
+    height: 700px
+    max-width: 60vw
+    & img
+      width: 100%
+      height: auto
+      object-fit: cover
+
+@media (min-width: media.$medium)
+  .back
+    display: flex
+    flex-flow: wrap
+    overflow: hidden
+    margin-top: 20px
+    max-width: 70vw
+    height: 900px
+    max-height: 900px
+    right: 0
+    & img
+      transform: translateX(5%)
+
+@media (min-width: media.$large)
+  .back
+    margin-top: 45px
+    max-width: 50vw
+    height: 850px
+    max-height: 850px
+    & img
+      transform: translateX(0%)
+
+@media (min-width: 1440px)
+  .back
+    max-width: 55vw
+    height: 1000px
+    max-height: 1000px
+
+@media (min-width: media.$extLarge)
+  .back
+    right: 5%
+    max-height: 900px
+    height: 900px
+    max-width: 700px

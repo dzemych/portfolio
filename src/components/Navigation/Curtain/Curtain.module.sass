@@ -1,4 +1,5 @@
 @use '../../../assets/styles/colors'
+@use '../../../assets/styles/media'
 
 
 .container
@@ -150,3 +151,12 @@
 
 .hide_links
   display: none
+
+@media (min-width: 390px) and (min-height: 800px) and (max-width: media.$medium)
+  .links_list li
+    margin: 10px auto
+
+@media (min-width: media.$medium)
+  .links_list
+    & li
+      margin: 8px auto

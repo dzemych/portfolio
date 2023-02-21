@@ -7,16 +7,19 @@ import './assets/styles/media.sass'
 import './assets/styles/colors.sass'
 import './assets/styles/fonts.sass'
 import PageLayout from "./hoc/PageLayout"
+import MediaLayout from "./hoc/MediaLayout"
 
 
 function App() {
    return (
       <BrowserRouter>
-         <PageLayout>
-            <MainLayout>
-               <Router/>
-            </MainLayout>
-         </PageLayout>
+         <MediaLayout>
+            <PageLayout>
+               <MainLayout>
+                  <Router/>
+               </MainLayout>
+            </PageLayout>
+         </MediaLayout>
       </BrowserRouter>
    )
 }

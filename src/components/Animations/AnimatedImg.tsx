@@ -3,7 +3,7 @@ import classes from './AnimatedImg.module.sass'
 import {motion} from "framer-motion"
 import {IAnimatedElProps} from "../../types/IAnimatedElProps"
 import {FetchStatus} from "../../types/api.types"
-// import Loader from "@components/Loader/Loader"
+import useAnimationStatus from "../../hooks/animation/useAnimationStatus"
 
 
 interface IProps extends IAnimatedElProps {
@@ -21,14 +21,15 @@ const AnimatedImg: FC<IProps> =
        onClick,
        colorSchema = 'black',
        shadow = true,
-       animationType= 'curtain',
+       animationType= 'opacity',
        backWhileLoading = true,
        hoverAnimation = true,
-       duration = .45
+       duration = .45,
    }) => {
-
    const [status, setStatus] = useState(FetchStatus.INIT)
    const imgRef = useRef<HTMLImageElement | null>(null)
+
+   const { allowAnim, played } = useAnimationStatus(imgRef, duration * 1000)
 
    const curtainVariants = {
       initial: {
@@ -105,7 +106,10 @@ const AnimatedImg: FC<IProps> =
                variants={curtainVariants}
                initial='initial'
                animate={ (!whileInViewport && status === FetchStatus.LOADED) ? 'active' : '' }
-               whileInView={ (whileInViewport && status === FetchStatus.LOADED) ? 'active' : '' }
+               whileInView={
+                  ((whileInViewport && allowAnim) || played)
+                     ? 'active' : ''
+               }
                viewport={{ once: true }}
             />
          }
@@ -128,7 +132,10 @@ const AnimatedImg: FC<IProps> =
                variants={animationType === 'curtain' ? imgCurtainVariants : imgOpacityVariants}
                initial='initial'
                animate={ (!whileInViewport && status === FetchStatus.LOADED) ? 'active' : '' }
-               whileInView={ (whileInViewport && status === FetchStatus.LOADED) ? 'active' : '' }
+               whileInView={
+                  ((whileInViewport && allowAnim) || played)
+                     ? 'active' : ''
+               }
                viewport={{ once: true }}
             />
          </div>

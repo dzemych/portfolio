@@ -26,9 +26,9 @@ const Navbar:FC = () => {
          cls.push(classes.active_link)
 
       return (
-         <OpacityDiv
-            whileInViewport
-            delay={.5}
+         <div
+            // whileInViewport
+            // delay={.5}
             className={cls.join(' ')}
             key={el.to + idx}
             onClick={goTo(el.to, el.newWin)}
@@ -37,15 +37,15 @@ const Navbar:FC = () => {
 
             <div className={classes.left_curtain}/>
             <div className={classes.right_curtain}/>
-         </OpacityDiv>
+         </div>
       )
    }
    return (
-      <OpacityDiv className={classes.container}>
+      <div className={classes.container}>
          <nav className={classes.wrapper}>
             { links.map((el, i) => renderLink(el, i)) }
          </nav>
-      </OpacityDiv>
+      </div>
    )
 }
 

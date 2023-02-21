@@ -1,19 +1,23 @@
-import {FC} from "react"
+import {FC, useRef} from "react"
 import {motion} from 'framer-motion'
 import { IAnimatedElProps } from '../../types/IAnimatedElProps'
+import useAnimationStatus from "../../hooks/animation/useAnimationStatus"
 
 
 const OpacityDiv: FC<IAnimatedElProps> =
    ({
        children,
        className,
-       whileInViewport,
+       whileInViewport= true,
        onClick,
        delay = 0,
        exit = false,
        id,
        duration = .45
    }) => {
+   const ref = useRef(null)
+   const { allowAnim, played } = useAnimationStatus(ref, 1200)
+
    const variants = {
       initial: {
          opacity: 0
@@ -39,7 +43,7 @@ const OpacityDiv: FC<IAnimatedElProps> =
          initial='initial'
          animate={!whileInViewport ? 'active' : ''}
          exit={exit ? 'exit' : ''}
-         whileInView={whileInViewport ? 'active' : ''}
+         whileInView={((whileInViewport && allowAnim) || played) ? 'active' : ''}
          viewport={{ once: true }}
          id={id}
       >

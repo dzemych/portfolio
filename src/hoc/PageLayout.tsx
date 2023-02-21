@@ -21,6 +21,8 @@ const PageLayout: FC<IProps> = ({ children }) => {
 
    const [pagePreLoader, setPagePreLoader] = useState(false)
 
+   const [globalLoaderAnimation, setGlobalLoaderAnimation] = useState(true)
+
    const changePage = async (to: string) => {
       if (!isCurtain && prevPath.current === to)
          window.scrollTo(0, 0)
@@ -99,7 +101,9 @@ const PageLayout: FC<IProps> = ({ children }) => {
          changePage,
          pageLoaderAnimation,
          setPageLoaderAnimation,
-         pagePreLoader
+         pagePreLoader,
+         globalLoaderAnimation,
+         setGlobalLoaderAnimation
       }}>
          { children }
       </PageContext.Provider>

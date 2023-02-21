@@ -1,0 +1,182 @@
+@use '../../assets/styles/colors'
+@use '../../assets/styles/media'
+
+.container
+  padding-top: 0
+
+.text
+  font-size: 1.1rem
+  color: colors.$main_gray
+  line-height: 140%
+  margin-bottom: 35px
+
+.skill_block
+  display: flex
+  flex-direction: column
+  margin-bottom: 20px
+
+.skill_title
+  line-height: 145%
+  margin-bottom: 15px
+  font-size: 1rem
+  font-family: 'Custom Light', sans-serif
+  font-weight: 300
+  letter-spacing: 3.5px
+  text-transform: uppercase
+  color: colors.$main_gray
+
+.skill_list
+  display: flex
+  flex-direction: row
+  flex-wrap: wrap
+  line-height: 180%
+
+.skill_text
+  font-size: 1.1rem
+  font-weight: 600
+
+
+.text_divider
+  margin: 0 11px
+  color: colors.$main_gray
+  font-weight: 600
+  font-size: 1.2rem
+
+.hr
+  height: 1px
+  width: 100%
+  background: colors.$light_gray
+  border: none
+  margin: 45px 0
+
+.pattern_title
+  font-size: 1.2rem
+  text-transform: uppercase
+  color: darken(colors.$main_gray, 15%)
+  letter-spacing: 3px
+  font-weight: 300
+  margin-bottom: 10px
+
+.pattern_item
+  display: flex
+  flex-direction: row
+  margin-left: 5px
+  &:last-child p
+    margin-bottom: 0
+
+.pattern_subtitle
+  color: #222
+  display: inline-block
+  font-size: 1.2rem
+  font-weight: 600
+
+.pattern_text
+  color: colors.$main_gray
+  font-size: 1.1rem
+  line-height: 130%
+
+@media (min-width: media.$small)
+  .container
+    padding-left: 5px
+    padding-right: 5px
+
+  .text
+    max-width: 90%
+
+  .skill_block
+    max-width: 80%
+
+  .pattern_item
+    max-width: 80%
+
+@media (min-width: 770px)
+  .container
+    padding-left: 0
+    padding-right: 0
+
+  .skill_block
+    margin: 0
+
+  .skill_section, .pattern_section, .lang_section
+    display: flex
+    flex-direction: row
+    flex-wrap: wrap
+    justify-content: space-between
+    & > div
+      width: 47%
+    & > div:nth-child(n + 3)
+      margin-top: 30px
+
+  .lang_title
+    margin-bottom: 20px
+
+  .lang_section
+    padding-bottom: 20px
+    & > div:nth-child(n + 3)
+      margin-top: 2px
+
+@media (min-width: media.$medium)
+  .title
+    font-size: 2.8rem
+
+  .text
+    display: block
+    font-size: 1.3rem
+
+  .skill_title
+    font-size: 1.1rem
+
+  .pattern_title
+    font-size: 1.3rem
+
+  .pattern_subtitle
+    font-size: 1.35rem
+
+  .skill_list, .pattern_text
+    font-size: 1.25rem
+
+@media (min-width: media.$large)
+  .text
+    max-width: 80%
+    margin-bottom: 40px
+
+  .skill_section, .pattern_section, .lang_section
+    justify-content: flex-start
+    & > div
+      width: 40%
+    & > div:nth-child(odd)
+      margin-right: 90px
+
+  .lang_section
+    justify-content: flex-start
+    & > div
+      width: 25%
+      margin-right: 0
+    & > div:nth-child(odd)
+      margin-right: 0
+
+@media (min-width: media.$extLarge)
+  .text
+    max-width: 80%
+
+  .skill_section, .pattern_section, .lang_section
+    justify-content: flex-start
+    & > div:nth-child(odd)
+      margin-right: 80px
+    & > div:nth-child(n + 3)
+      margin-top: 0
+    & > div
+      width: 25%
+      margin-right: 90px
+
+  .lang_section
+    justify-content: flex-start
+    & > div
+      width: 25%
+      margin-right: 0
+    & > div:nth-child(odd)
+      margin-right: 0
+    & > div
+      margin-top: 20px
+    & > div:nth-child(n + 3)
+      margin-top: 20px
