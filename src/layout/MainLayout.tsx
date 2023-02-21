@@ -6,6 +6,7 @@ import PagePreLoader from "../components/PagePreLoader/PagePreLoader"
 import Curtain from "../components/Navigation/Curtain/Curtain"
 import MediaContext from "../context/media.context"
 import PageContext from "../context/page.context"
+import CurtainBackImg from "../components/CurtainBackImg/CurtainBackImg"
 
 
 interface IProps {
@@ -57,6 +58,8 @@ const MainLayout:FC<IProps> = ({ children }) => {
          <PagePreLoader/>
 
          <Curtain/>
+
+         {/*<CurtainBackImg/>*/}
 
          <div className={headerCls.join(' ')}/>
 

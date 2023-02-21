@@ -1,6 +1,5 @@
 import {FC, useEffect, useState} from 'react'
 import classes from './Project.module.sass'
-import {useParams} from "react-router-dom"
 import {FetchStatus} from "../../types/api.types"
 import PageLoader from "../../components/PageLoader/PageLoader"
 import NeedDev from "../../components/NeedDev/NeedDev"
@@ -9,6 +8,9 @@ import two from '../../assets/imgs/2.jpg'
 import three from '../../assets/imgs/3.jpg'
 import four from '../../assets/imgs/4.jpg'
 import Title from "../../components/ui/Title/Title"
+import OpacityYDiv from "../../components/Animations/OpacityYDiv";
+import ImgPreview from "./ImgPreview/ImgPreview";
+import {useParams} from "react-router-dom";
 
 
 interface IInfoItem {
@@ -17,7 +19,7 @@ interface IInfoItem {
    text: string
 }
 
-const photos: string[] = [one, two, three, four]
+const photos: string[] = [one, two, three, four, one, two, three, four, one, two, three, four, one, two, three, four, one, two, three, four, one, two, three, four]
 
 const infos: IInfoItem[] = [
    { title: 'my role', link: false, text: 'Front end and backend developer' },
@@ -33,9 +35,20 @@ const techs = [
 
 const Project:FC = () => {
 
-   const [status, setStatus] = useState(FetchStatus.INIT)
-
    const { slug } = useParams()
+
+   const [status, setStatus] = useState(FetchStatus.INIT)
+   const [imgPreview, setImgPreview] = useState(false)
+   const [page, setPage] = useState(0)
+
+   const toggleImgPreview = () => {
+      setImgPreview(prev => !prev)
+   }
+
+   const openImg = (i: number) => () => {
+      setPage(i)
+      setImgPreview(true)
+   }
 
    const renderSkill = (text: string, idx: number, arr: string[]) => (
       <div key={idx}>
@@ -51,15 +64,19 @@ const Project:FC = () => {
          <div className={classes.info_block} key={title}>
             <Title type='light' className={classes.info_title}>{title}</Title>
 
-            <span className={[classes.info_text, link && classes.info_text_link].join(' ')}>
+            <OpacityYDiv className={[classes.info_text, link && classes.info_text_link].join(' ')}>
                {text}
-            </span>
+            </OpacityYDiv>
          </div>
       )
    }
 
-   const renderPhoto = (src: string) => (
-      <div className={classes.photos_item} key={src}>
+   const renderPhoto = (src: string, idx: number) => (
+      <div
+         className={classes.photos_item}
+         key={`${src}-${Math.random()}`}
+         onClick={openImg(idx)}
+      >
          <img src={src} alt=""/>
       </div>
    )
@@ -86,21 +103,28 @@ const Project:FC = () => {
                   <div className={classes.info_block}>
                      <Title type='light' className={classes.info_title}>Technologies I used</Title>
 
-                     <div className={classes.skill_list}>
+                     <OpacityYDiv className={classes.skill_list}>
                         { techs.map((el, i, arr) => renderSkill(el, i, arr)) }
-                     </div>
+                     </OpacityYDiv>
                   </div>
                </div>
             </div>
 
-            <div className={classes.main_text}>
+            <OpacityYDiv className={classes.main_text}>
                <span dangerouslySetInnerHTML={{ __html: text.replace(/\n/g, '<p></p>') }}/>
-            </div>
+            </OpacityYDiv>
          </section>
 
          <section className={classes.photos_container}>
-            <div className={classes.photos_list}>
-               { photos.map(renderPhoto) }
+            <ImgPreview
+               srcArr={photos}
+               open={imgPreview}
+               close={toggleImgPreview}
+               startAt={page}
+            />
+
+            <div className={classes.list}>
+               { photos.map((el, i) => renderPhoto(el, i)) }
             </div>
          </section>
 

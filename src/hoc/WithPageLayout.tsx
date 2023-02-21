@@ -7,7 +7,7 @@ interface IProps {
    children: ReactNode
 }
 
-const PageLayout: FC<IProps> = ({ children }) => {
+const WithPageLayout: FC<IProps> = ({ children }) => {
    const navigate = useNavigate()
    const location = useLocation()
 
@@ -110,4 +110,4 @@ const PageLayout: FC<IProps> = ({ children }) => {
    )
 }
 
-export default PageLayout
+export default WithPageLayout

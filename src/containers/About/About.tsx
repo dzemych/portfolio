@@ -110,7 +110,7 @@ const About:FC = () => {
 
    return(
       <div className={classes.container}>
-         <PageLoader status={status}/>
+         <PageLoader status={status} text={'Read about me'}/>
 
          <OpacityYDiv>
             <h1 className={classes.title}>About me</h1>

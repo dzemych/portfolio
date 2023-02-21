@@ -22,7 +22,8 @@ const Title:FC<IProps> = (
 
    const params = {
       ref, style, onClick,
-      className: [classes[type], className].join(' '),
+      // @ts-ignore
+      className: [className, classes[type]].join(' '),
       ...animationParams
    }
 

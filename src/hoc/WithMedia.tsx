@@ -7,7 +7,7 @@ interface IProps {
    children: ReactNode
 }
 
-const MediaLayout:FC<IProps> = ({ children }) => {
+const WithMedia:FC<IProps> = ({ children }) => {
    const { extSmall, small, large, medium, extLarge, vw } = useMedia()
 
    return(
@@ -18,4 +18,4 @@ const MediaLayout:FC<IProps> = ({ children }) => {
 }
 
 
-export default MediaLayout
+export default WithMedia

@@ -1,4 +1,5 @@
 @use 'src/assets/styles/colors'
+@use 'src/assets/styles/media'
 
 .container
   width: 100%
@@ -12,13 +13,8 @@
 
 .title
   margin-top: 15px
+  margin-bottom: 25px
   font-size: 2.3rem
-
-.info_title
-  font-size: .9rem
-  letter-spacing: 2.5px
-  margin-bottom: 10px
-  font-weight: 500
 
 .info_blocks_list
   margin-bottom: 40px
@@ -27,9 +23,23 @@
   display: flex
   flex-direction: column
 
+.info_title
+  font-size: 1rem
+  letter-spacing: 2.5px
+  margin-bottom: 10px
+  font-weight: 500
+
 .info_block
   display: flex
   flex-direction: column
+  margin-bottom: 5px
+
+.info_text
+  font-size: 1.2rem
+  letter-spacing: .5px
+  color: black
+  font-family: "Custom Medium", sans-serif
+  font-weight: 600
 
 .skill_list
   display: flex
@@ -38,7 +48,7 @@
   line-height: 180%
 
 .skill_text
-  font-size: 1.1rem
+  font-size: 1.2rem
   font-weight: 600
 
 .text_divider
@@ -47,11 +57,18 @@
   font-weight: 600
   font-size: 1.2rem
 
+.main_text
+  margin-bottom: 40px
+  font-size: 1.15rem
+  letter-spacing: .5px
+  color: colors.$main_gray
+  line-height: 130%
+
 .photos_container
   padding-bottom: 30px
   width: 100%
 
-.photos_list
+.list
   width: 100%
   display: flex
   flex-direction: row
@@ -67,3 +84,92 @@
     width: 100%
     object-fit: cover
     object-position: center
+
+@media (min-width: 770px)
+  .container
+    margin-top: 10px
+  
+  .subtitle
+    font-size: 1.2rem
+
+  .title
+    margin-top: 10px
+    margin-bottom: 40px
+  
+  .info_title
+    font-size: 1.1rem
+
+  .info_text
+    font-size: 1.3rem
+
+  .skill_text
+    font-size: 1.3rem
+
+  .details_container
+    width: 65%
+
+  .main_text
+    width: 70%
+    font-size: 1.3rem
+
+  .photos_item
+    height: 550px
+
+  .list
+    & > div:not(:first-child)
+      margin-top: 30px
+
+@media (min-width: 1024px)
+  .content
+    flex-direction: row
+    flex-wrap: wrap
+    justify-content: space-between
+    & > div
+      width: 47%
+
+  .main_text
+    margin-top: 90px
+
+  .photos_container
+    overflow: hidden
+    width: 85vw
+    margin: 30px auto
+
+  .list
+    display: initial
+
+  .list
+    display: initial
+    width: 100%
+    & > div
+      cursor: pointer
+      display: inline-block
+    & > div:not(:first-child)
+      margin-top: 2vw
+    & > div
+      width: 27vw
+      height: 18.6vw
+      margin-right: 2vw
+      margin-top: 2vw
+    & > div:nth-child(12n + 1)
+      float: left
+      width: 56vw
+      height: 39.2vw
+      margin-right: 2vw
+    & > div:nth-child(12n + 8)
+      float: right
+      width: 56vw
+      height: 39.2vw
+      margin-left: 2vw
+    & > div:nth-child(6n + 2), & > div:nth-child(6n + 3), & > div:nth-child(6n),
+    & > div:nth-child(12n + 9),  & > div:nth-child(12n + 7)
+      margin-right: 0
+
+@media (min-width: media.$large)
+  .content
+    margin: 60px 45px 0 100px
+    & > div:first-child
+      width: 38%
+
+  .main_text
+    font-size: 1.4rem

@@ -9,16 +9,6 @@ export interface IElProps {
    children?: ReactNode
 }
 
-// export interface IAnimateProps {
-//    whileInViewport?: boolean
-//    delay?: number
-//    exit?: boolean
-//    id?: string
-//    showAnimation?: boolean
-//    duration?: number
-//    hoverAnimation?: boolean
-// }
-
 interface ViewportOptions {
    root?: RefObject<Element>
    once?: boolean
