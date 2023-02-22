@@ -7,6 +7,7 @@ import Project from "./containers/Project/Project"
 import Admin from "./containers/Admin/Admin"
 import AuthContext from "./context/auth.context"
 import Auth from "./containers/Auth/Auth"
+import EditProject from "./containers/EditProject/EditProject"
 
 
 const Router:FC = () => {
@@ -20,9 +21,12 @@ const Router:FC = () => {
          <Route path={'/projects'} element={ <Home/> }/>
          <Route path={'/projects/:slug'} element={ <Project/> }/>
          <Route path={'/:slug'} element={ <Project/> }/>
-         { isAuth
-            ? <Route path={'/admin'} element={ <Admin/> }/>
-            : <Route path={'/admin'} element={ <Auth/> }/>
+         { true
+            ? <>
+               <Route path={'/admin'} element={ <Admin/> }/>
+               <Route path={'/admin/:slug'} element={ <EditProject/> }/>
+            </>
+            : <Route path={'/admin'} element={ <Admin/> }/>
          }
       </Routes>
    )

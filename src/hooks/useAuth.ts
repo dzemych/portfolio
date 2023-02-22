@@ -13,7 +13,6 @@ const useAuth: HookUseAuth = () => {
    const [isAuth, setIsAuth] = useState(false)
 
    const login = (email: string, pwd: string) => {
-      console.log(email, pwd)
       signInWithEmailAndPassword(auth, email, pwd)
          .then(() => {
             setIsAuth(true)

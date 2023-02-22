@@ -1,5 +1,5 @@
 //@ts-nocheck
-import { initializeApp, ref, onValue } from "firebase/app"
+import { initializeApp } from "firebase/app"
 import { getDatabase } from "firebase/database"
 import { getAuth } from "firebase/auth"
 import { getStorage } from "firebase/storage";
