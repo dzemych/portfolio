@@ -2,7 +2,7 @@ import {FC} from 'react'
 import classes from './List.module.sass'
 import ListItem from "./ListItem/ListItem"
 import im from '../../assets/imgs/1.jpg'
-import OpacityYDiv from "../Animations/OpacityYDiv"
+import OpacityYDiv from "../UI/OpacityYDiv"
 
 
 interface IProps {

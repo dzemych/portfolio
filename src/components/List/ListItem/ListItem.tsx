@@ -1,6 +1,6 @@
 import {FC, useContext} from 'react'
 import classes from './ListItem.module.sass'
-import OpacityYDiv from "../../Animations/OpacityYDiv"
+import OpacityYDiv from "../../UI/OpacityYDiv"
 import PageContext from "../../../context/page.context"
 
 

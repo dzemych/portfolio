@@ -18,10 +18,6 @@ const useAnimationStatus: IHook = (ref, duration) => {
 
    const isInView = useInView(ref)
 
-
-   if (duration === 390)
-      console.log(isCurtain, isInView)
-
    useEffect(() => {
       if (!isCurtain)
          setTimeout(() => {

@@ -1,16 +1,17 @@
 import {FC, useEffect, useState} from 'react'
 import classes from './Project.module.sass'
 import {FetchStatus} from "../../types/api.types"
-import PageLoader from "../../components/PageLoader/PageLoader"
+import PageLoader from "../../components/Navigation/PageLoader/PageLoader"
 import NeedDev from "../../components/NeedDev/NeedDev"
 import one from '../../assets/imgs/1.jpg'
 import two from '../../assets/imgs/2.jpg'
 import three from '../../assets/imgs/3.jpg'
 import four from '../../assets/imgs/4.jpg'
-import Title from "../../components/ui/Title/Title"
-import OpacityYDiv from "../../components/Animations/OpacityYDiv";
+import Title from "../../components/UI/Title/Title"
+import OpacityYDiv from "../../components/UI/OpacityYDiv";
 import ImgPreview from "./ImgPreview/ImgPreview";
 import {useParams} from "react-router-dom";
+import AnimatedImg from "../../components/UI/Img/AnimatedImg"
 
 
 interface IInfoItem {
@@ -74,10 +75,15 @@ const Project:FC = () => {
    const renderPhoto = (src: string, idx: number) => (
       <div
          className={classes.photos_item}
-         key={`${src}-${Math.random()}`}
+         key={`${src}-${idx}`}
          onClick={openImg(idx)}
       >
-         <img src={src} alt=""/>
+         <AnimatedImg
+            photoSrc={src}
+            shadow={false}
+            colorSchema={'white'}
+            animationType={'curtain'}
+         />
       </div>
    )
 

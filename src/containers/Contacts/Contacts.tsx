@@ -1,12 +1,12 @@
 import {FC, useContext, useEffect, useState} from 'react'
 import classes from './Contacts.module.sass'
-import PageLoader from "../../components/PageLoader/PageLoader"
+import PageLoader from "../../components/Navigation/PageLoader/PageLoader"
 import {FetchStatus} from "../../types/api.types"
 import {faTelegram, faLinkedin, faGithub} from "@fortawesome/free-brands-svg-icons"
 import {faEnvelope, faPhone} from "@fortawesome/free-solid-svg-icons"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
-import OpacityYDiv from "../../components/Animations/OpacityYDiv"
-import OpacityDiv from "../../components/Animations/OpacityDiv"
+import OpacityYDiv from "../../components/UI/OpacityYDiv"
+import OpacityDiv from "../../components/UI/OpacityDiv"
 import WorkAnim from "./WorkAnim"
 import MediaContext from "../../context/media.context"
 

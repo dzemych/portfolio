@@ -1,5 +1,5 @@
 import {FC, useContext} from 'react'
-import PageContext from "../../context/page.context"
+import PageContext from "../../../context/page.context"
 import classes from './PagePreLoader.module.sass'
 import ReactDOM from "react-dom"
 

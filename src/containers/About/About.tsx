@@ -1,9 +1,9 @@
 import {FC, useEffect, useState} from 'react'
 import classes from './About.module.sass'
-import PageLoader from "../../components/PageLoader/PageLoader"
+import PageLoader from "../../components/Navigation/PageLoader/PageLoader"
 import {FetchStatus} from "../../types/api.types"
-import OpacityYDiv from "../../components/Animations/OpacityYDiv"
-import OpacityDiv from "../../components/Animations/OpacityDiv"
+import OpacityYDiv from "../../components/UI/OpacityYDiv"
+import OpacityDiv from "../../components/UI/OpacityDiv"
 import NeedDev from "../../components/NeedDev/NeedDev"
 
 

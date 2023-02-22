@@ -29,7 +29,8 @@
       "node_modules",
       "build",
       "scripts",
-      "webpack"
+      "webpack",
+      "src/firebase.ts"
    ],
    "include": [
       "src"

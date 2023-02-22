@@ -1,12 +1,17 @@
-import {FC} from 'react'
+import {FC, useContext} from 'react'
 import {Route, Routes} from "react-router-dom"
 import Home from "./containers/Home/Home"
 import Contacts from "./containers/Contacts/Contacts"
 import About from "./containers/About/About"
 import Project from "./containers/Project/Project"
+import Admin from "./containers/Admin/Admin"
+import AuthContext from "./context/auth.context"
+import Auth from "./containers/Auth/Auth"
 
 
 const Router:FC = () => {
+   const { isAuth } = useContext(AuthContext)
+
    return(
       <Routes>
          <Route path={'/'} element={ <Home/> } />
@@ -15,6 +20,10 @@ const Router:FC = () => {
          <Route path={'/projects'} element={ <Home/> }/>
          <Route path={'/projects/:slug'} element={ <Project/> }/>
          <Route path={'/:slug'} element={ <Project/> }/>
+         { isAuth
+            ? <Route path={'/admin'} element={ <Admin/> }/>
+            : <Route path={'/admin'} element={ <Auth/> }/>
+         }
       </Routes>
    )
 }

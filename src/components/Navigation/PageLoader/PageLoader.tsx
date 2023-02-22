@@ -1,10 +1,10 @@
 import {FC, useContext, useEffect, useState} from 'react'
 import classes from './PageLoader.module.sass'
-import {FetchStatus} from "../../types/api.types"
-import PageContext from "../../context/page.context"
+import {FetchStatus} from "../../../types/api.types"
+import PageContext from "../../../context/page.context"
 import ReactDOM from 'react-dom'
 import {motion} from 'framer-motion'
-import Loading from "../Loading/Loading"
+import Loading from "../../Loading/Loading"
 
 
 interface IProps {

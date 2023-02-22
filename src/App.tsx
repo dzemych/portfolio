@@ -6,18 +6,24 @@ import './assets/styles/global.sass'
 import './assets/styles/media.sass'
 import './assets/styles/colors.sass'
 import './assets/styles/fonts.sass'
-import ContextWrapper from "./hoc/ContextWrapper"
+import WithAuth from "./hoc/WithAuth"
+import WithPageLayout from "./hoc/WithPageLayout"
+import WithMedia from "./hoc/WithMedia"
 
 
 function App() {
    return (
-      <BrowserRouter>
-         <ContextWrapper>
-            <MainLayout>
-               <Router/>
-            </MainLayout>
-         </ContextWrapper>
-      </BrowserRouter>
+      <WithAuth>
+         <BrowserRouter>
+            <WithMedia>
+               <WithPageLayout>
+                  <MainLayout>
+                     <Router/>
+                  </MainLayout>
+               </WithPageLayout>
+            </WithMedia>
+         </BrowserRouter>
+      </WithAuth>
    )
 }
 

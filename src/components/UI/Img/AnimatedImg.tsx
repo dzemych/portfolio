@@ -1,9 +1,10 @@
 import {FC, useEffect, useRef, useState} from "react"
 import classes from './AnimatedImg.module.sass'
 import {motion} from "framer-motion"
-import {IAnimatedElProps} from "../../types/IAnimatedElProps"
-import {FetchStatus} from "../../types/api.types"
-import useAnimationStatus from "../../hooks/animation/useAnimationStatus"
+import {IAnimatedElProps} from "../../../types/IAnimatedElProps"
+import {FetchStatus} from "../../../types/api.types"
+import useAnimationStatus from "../../../hooks/animation/useAnimationStatus"
+import Loading from "../../Loading/Loading"
 
 
 interface IProps extends IAnimatedElProps {
@@ -17,19 +18,20 @@ const AnimatedImg: FC<IProps> =
    ({
        photoSrc,
        delay = .2,
-       whileInViewport,
+       whileInViewport = true,
        onClick,
        colorSchema = 'black',
        shadow = true,
-       animationType= 'opacity',
+       animationType = 'opacity',
        backWhileLoading = true,
        hoverAnimation = true,
        duration = .45,
    }) => {
    const [status, setStatus] = useState(FetchStatus.INIT)
    const imgRef = useRef<HTMLImageElement | null>(null)
+   const ref = useRef(null)
 
-   const { allowAnim, played } = useAnimationStatus(imgRef, duration * 1000)
+   const { allowAnim, played } = useAnimationStatus(ref, duration * 1000)
 
    const curtainVariants = {
       initial: {
@@ -97,7 +99,7 @@ const AnimatedImg: FC<IProps> =
    }, [photoSrc])
 
    return (
-      <div className={cls.join(' ')} onClick={onClick}>
+      <div className={cls.join(' ')} onClick={onClick} ref={ref}>
          { shadow && <div className={classes.backdrop}/> }
 
          { animationType === 'curtain' &&
@@ -105,7 +107,6 @@ const AnimatedImg: FC<IProps> =
                className={curtainCls.join(' ')}
                variants={curtainVariants}
                initial='initial'
-               animate={ (!whileInViewport && status === FetchStatus.LOADED) ? 'active' : '' }
                whileInView={
                   ((whileInViewport && allowAnim) || played)
                      ? 'active' : ''
@@ -122,7 +123,7 @@ const AnimatedImg: FC<IProps> =
                initial={'active'}
                animate={ status === FetchStatus.LOADED ? 'hidden' : '' }
             >
-               {/*<Loader/>*/}
+               <Loading/>
             </motion.div>
 
             <motion.img
@@ -131,7 +132,6 @@ const AnimatedImg: FC<IProps> =
                ref={imgRef}
                variants={animationType === 'curtain' ? imgCurtainVariants : imgOpacityVariants}
                initial='initial'
-               animate={ (!whileInViewport && status === FetchStatus.LOADED) ? 'active' : '' }
                whileInView={
                   ((whileInViewport && allowAnim) || played)
                      ? 'active' : ''

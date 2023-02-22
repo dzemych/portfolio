@@ -143,6 +143,16 @@ const ImgPreview: FC<IProps> = (
       }
    }, [isZoom])
 
+   useEffect(() => {
+      const html = document.querySelector('html')
+
+      if (html)
+         if (open)
+            html.style.overflowY = 'hidden'
+         else
+            html.style.overflowY = 'scroll'
+   }, [open])
+
    const style = {
       transition: duration,
       transform: `translateX(${-offset}px)`,

@@ -1,6 +1,6 @@
 import {FC, useContext} from 'react'
 import classes from './NavBar.module.sass'
-import OpacityDiv from "../../Animations/OpacityDiv"
+import OpacityDiv from "../../UI/OpacityDiv"
 import {useLocation} from "react-router-dom"
 import PageContext from "../../../context/page.context"
 import {ILink, links} from "../links"

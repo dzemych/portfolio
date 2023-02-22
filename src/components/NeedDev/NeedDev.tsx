@@ -1,6 +1,6 @@
 import {FC, useContext} from 'react'
 import classes from './NeedDev.module.sass'
-import OpacityYDiv from "../Animations/OpacityYDiv"
+import OpacityYDiv from "../UI/OpacityYDiv"
 import { motion } from 'framer-motion'
 import PageContext from "../../context/page.context"
 

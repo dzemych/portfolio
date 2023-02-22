@@ -1,12 +1,12 @@
 import {FC, useContext, useEffect, useState} from 'react'
 import classes from './Home.module.sass'
 import {FetchStatus} from "../../types/api.types"
-import PageLoader from "../../components/PageLoader/PageLoader"
+import PageLoader from "../../components/Navigation/PageLoader/PageLoader"
 import test from '../../assets/imgs/bg_home.png'
 import BackImg from "../../components/BackImg/BackImg"
 import CustomLink from "../../components/Navigation/CustomLink"
 import List from "../../components/List/List"
-import OpacityYDiv from "../../components/Animations/OpacityYDiv"
+import OpacityYDiv from "../../components/UI/OpacityYDiv"
 import NeedDev from "../../components/NeedDev/NeedDev"
 import MediaContext from "../../context/media.context"
 import Arrow from "../../assets/imgs/Arrow"

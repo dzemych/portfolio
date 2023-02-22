@@ -2,11 +2,12 @@ import {FC, ReactNode, useContext, useEffect, useState} from 'react'
 import classes from './MainLayout.module.sass'
 import Header from "../components/Navigation/Header/Header"
 import Footer from "../components/Navigation/Footer/Footer"
-import PagePreLoader from "../components/PagePreLoader/PagePreLoader"
+import PagePreLoader from "../components/Navigation/PagePreLoader/PagePreLoader"
 import Curtain from "../components/Navigation/Curtain/Curtain"
 import MediaContext from "../context/media.context"
 import PageContext from "../context/page.context"
-import CurtainBackImg from "../components/CurtainBackImg/CurtainBackImg"
+import ContactBtn from "../components/Navigation/ContactBtn/ContactBtn"
+import ScrollBtn from "../components/Navigation/ScrollBtn/ScrollBtn"
 
 
 interface IProps {
@@ -59,7 +60,8 @@ const MainLayout:FC<IProps> = ({ children }) => {
 
          <Curtain/>
 
-         {/*<CurtainBackImg/>*/}
+         <ContactBtn/>
+         <ScrollBtn/>
 
          <div className={headerCls.join(' ')}/>
 
