@@ -12,7 +12,6 @@ import useStorage from "../../hooks/useStorage"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import { faTrash } from "@fortawesome/free-solid-svg-icons"
 import PageLoader from "../../components/Navigation/PageLoader/PageLoader"
-import {FetchStatus} from "../../types/api.types"
 
 
 const detailInit: IProjectDetail = {

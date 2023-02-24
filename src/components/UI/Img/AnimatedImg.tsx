@@ -45,6 +45,7 @@ const AnimatedImg: FC<IProps> =
             ease: 'linear'
          }
       },
+      played: { height: 0, transition: { duration: 0, delay: 0 } }
    }
 
    const imgCurtainVariants = {
@@ -60,18 +61,11 @@ const AnimatedImg: FC<IProps> =
             delay: delay + .35,
             ease: 'linear'
          }
-      }
-   }
-
-   const imgOpacityVariants = {
-      initial: { filter: 'blur(3px)' },
-      active: {
+      },
+      played: {
+         scale: 1,
          filter: 'blur(0px)',
-         transition: {
-            duration: duration - .05,
-            delay: delay + .35,
-            ease: 'linear'
-         }
+         transition: { duration: 0, delay: 0 }
       }
    }
 
@@ -109,7 +103,7 @@ const AnimatedImg: FC<IProps> =
                initial='initial'
                whileInView={
                   ((whileInViewport && allowAnim) || played)
-                     ? 'active' : ''
+                     ? 'active' : 'played'
                }
                viewport={{ once: true }}
             />
@@ -130,11 +124,11 @@ const AnimatedImg: FC<IProps> =
                className={classes.img}
                src={photoSrc}
                ref={imgRef}
-               variants={animationType === 'curtain' ? imgCurtainVariants : imgOpacityVariants}
+               variants={imgCurtainVariants}
                initial='initial'
                whileInView={
                   ((whileInViewport && allowAnim) || played)
-                     ? 'active' : ''
+                     ? 'active' : 'played'
                }
                viewport={{ once: true }}
             />

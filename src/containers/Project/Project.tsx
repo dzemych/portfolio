@@ -11,6 +11,9 @@ import AnimatedImg from "../../components/UI/Img/AnimatedImg"
 import usePageState from "../../hooks/usePageState"
 import PageContext from "../../context/page.context"
 import useStorage from "../../hooks/useStorage"
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
+import { faGlobe } from "@fortawesome/free-solid-svg-icons"
+import { faGithub } from "@fortawesome/free-brands-svg-icons"
 
 
 interface IInfoItem {
@@ -89,6 +92,15 @@ const Project:FC = () => {
       </div>
    )
 
+   const getSiteDomain = (url: string) => {
+      const dom = url.match(/(?<=[http|https]:\/\/).*/)
+
+      if (dom && dom[0])
+         return dom[0]
+
+      return url
+   }
+
    useEffect(() => {
       if (status !== FetchStatus.INIT) {
          setIsFetchingData(false)
@@ -127,8 +139,35 @@ const Project:FC = () => {
                </div>
             </div>
 
-            <OpacityYDiv className={classes.main_text}>
-               { state && <span dangerouslySetInnerHTML={{ __html: state.text.replace(/\n/g, '<p></p>') }}/> }
+            <OpacityYDiv className={classes.desc_container}>
+               <div className={classes.project_links_container}>
+                  { state?.site &&
+                     <a
+                        href={state.site}
+                        target='_blank'
+                        className={classes.project_link}
+                     >
+                        <FontAwesomeIcon icon={faGlobe}/> - { getSiteDomain(state.site) }
+                     </a>
+                  }
+
+                  { state?.github &&
+                     <a
+                        href={state.github}
+                        target='_blank'
+                        className={classes.project_link}
+                     >
+                        <FontAwesomeIcon icon={faGithub}/> - { getSiteDomain(state.github) }
+                     </a>
+                  }
+               </div>
+
+               { state &&
+                  <span
+                     className={classes.text}
+                     dangerouslySetInnerHTML={{ __html: state.text.replace(/\\n/gi, '<p></p>') }}
+                  />
+               }
             </OpacityYDiv>
          </section>
 

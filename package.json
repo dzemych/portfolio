@@ -50,6 +50,7 @@
    },
    "devDependencies": {
       "sass": "^1.58.2",
+      "@babel/runtime": "^7.15.4",
       "typescript-plugin-css-modules": "^4.1.1"
    }
 }
