@@ -6,9 +6,8 @@ import {
    TouchEvent
 } from "react"
 import classes from './ImgPreview.module.sass'
-// import Loader from "../Loader/Loader"
-import Loading from "../../../components/Loading/Loading";
-import {FetchStatus} from "../../../types/api.types";
+import Loading from "../../../components/Loading/Loading"
+import {FetchStatus} from "../../../types/api.types"
 
 
 type arg = (prev: boolean) => boolean
@@ -38,7 +37,6 @@ const ImgPreviewItem: FC<IProps> = ({ src, blockNav, moveStatus }) => {
    }
 
    const onDragMove = (e: DragEvent) => {
-      console.log(e)
       const { screenX: x, screenY: y } = e
       if (x && y)
          setCrop({ x: x - moveStart.x, y: y - moveStart.y })

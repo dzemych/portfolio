@@ -9,19 +9,22 @@ import './assets/styles/fonts.sass'
 import WithAuth from "./hoc/WithAuth"
 import WithPageLayout from "./hoc/WithPageLayout"
 import WithMedia from "./hoc/WithMedia"
+import WithContacts from "./hoc/WithContacts"
 
 
 function App() {
    return (
       <WithAuth>
          <BrowserRouter>
-            <WithMedia>
-               <WithPageLayout>
-                  <MainLayout>
-                     <Router/>
-                  </MainLayout>
-               </WithPageLayout>
-            </WithMedia>
+            <WithContacts>
+               <WithMedia>
+                  <WithPageLayout>
+                     <MainLayout>
+                        <Router/>
+                     </MainLayout>
+                  </WithPageLayout>
+               </WithMedia>
+            </WithContacts>
          </BrowserRouter>
       </WithAuth>
    )

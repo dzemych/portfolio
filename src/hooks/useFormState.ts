@@ -1,7 +1,6 @@
 import {FormEvent, useEffect, useState} from "react"
 import {onValue, ref} from "firebase/database"
 import {db} from "../firebase"
-import slugify from 'slugify'
 
 
 interface ObjWithStr {[key: string]: any}

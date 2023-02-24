@@ -20,7 +20,8 @@ const OpacityDiv: FC<IAnimatedElProps> =
 
    const variants = {
       initial: {
-         opacity: 0
+         opacity: 0,
+         transition: { duration: 0 }
       },
       active: {
          opacity: 1,
@@ -42,8 +43,8 @@ const OpacityDiv: FC<IAnimatedElProps> =
          variants={variants}
          initial='initial'
          animate={!whileInViewport ? 'active' : ''}
+         whileInView={((whileInViewport && allowAnim) || played) ? 'active' : 'initial'}
          exit={exit ? 'exit' : ''}
-         whileInView={((whileInViewport && allowAnim) || played) ? 'active' : ''}
          viewport={{ once: true }}
          id={id}
       >

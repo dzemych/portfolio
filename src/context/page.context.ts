@@ -13,6 +13,8 @@ interface ICurtainContext {
    pagePreLoader: boolean
    globalLoaderAnimation: boolean
    setGlobalLoaderAnimation: (val: boolean) => void
+   isFetchingData: boolean
+   setIsFetchingData: (val: boolean) => void
 }
 
 const voidFunc = () => undefined
@@ -28,7 +30,9 @@ const PageContext = createContext<ICurtainContext>({
    setPageLoaderAnimation: voidFunc,
    pagePreLoader: false,
    globalLoaderAnimation: true,
-   setGlobalLoaderAnimation: voidFunc
+   setGlobalLoaderAnimation: voidFunc,
+   isFetchingData: true,
+   setIsFetchingData: voidFunc
 })
 
 export default PageContext

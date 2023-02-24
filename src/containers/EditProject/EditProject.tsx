@@ -11,6 +11,8 @@ import slugify from "slugify"
 import useStorage from "../../hooks/useStorage"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import { faTrash } from "@fortawesome/free-solid-svg-icons"
+import PageLoader from "../../components/Navigation/PageLoader/PageLoader"
+import {FetchStatus} from "../../types/api.types"
 
 
 const detailInit: IProjectDetail = {
@@ -25,17 +27,19 @@ const initial: IProjectState = {
    text: '',
    details: [detailInit, detailInit],
    photos: [],
-   type: ''
+   type: '',
+   mainPhoto: ''
 }
 
 const EditProject:FC = () => {
    const { slug } = useParams()
 
    const { updateData } = useDb()
-   const { getUrls, loadImg, deleteFile } = useStorage()
+   const { getUrls, uploadProjectImg, deleteFile, uploadFile, getOneUrl } = useStorage()
 
    const inputRef = useRef<HTMLInputElement>(null)
 
+   const [mainImg, setMainImg] = useState('')
    const [imgUrls, setImgUrls] = useState<string[]>([])
 
    const [state, setState] = useState<IProjectState>(initial)
@@ -138,6 +142,19 @@ const EditProject:FC = () => {
          inputRef.current.click()
    }
 
+   const changeMainImg = async (e: ChangeEvent<HTMLInputElement>) => {
+      const files = e.target.files
+
+      if (files?.length) {
+         const path = await uploadFile(`projects/${slug}/mainPhoto`, files[0])
+
+         setState(prev => ({ ...prev, mainPhoto: path }))
+
+         const url = await getOneUrl(path)
+         setMainImg(url)
+      }
+   }
+
    const deleteOneImg = (url: string) => {
       deleteFile(url)
       setState(prev => ({ ...prev, photos: prev.photos.filter(el => el !== url) }))
@@ -145,7 +162,7 @@ const EditProject:FC = () => {
 
    const imgChange = async (e: ChangeEvent<HTMLInputElement>) => {
       if (e.target.files?.length && slug) {
-         const url = await loadImg(slug, e.target.files[0])
+         const url = await uploadProjectImg(slug, e.target.files[0])
          setState(prev => {
             if (!prev.photos)
                return { ...prev, photos: [url] }
@@ -158,10 +175,15 @@ const EditProject:FC = () => {
    // Load state
    useEffect(() => {
       if (slug && slug !== 'new') {
-         onValue(ref(db, '/projects/' + slug), (snapshot) => {
+         onValue(ref(db, '/projects/' + slug), async (snapshot) => {
             const val = snapshot.val()
 
             if (val) {
+               if (val.mainPhoto) {
+                  const url = await getOneUrl(val.mainPhoto)
+                  setMainImg(url)
+               }
+
                setState(val)
                setExists(true)
             }
@@ -187,7 +209,23 @@ const EditProject:FC = () => {
 
    return(
        <div className={classes.container}>
+          <PageLoader loading={false}/>
+
           <div className={classes.list}>
+             <div className={classes.main_img}>
+                <h2>Main img</h2>
+
+                <input
+                   type="file"
+                   accept={'image/*'}
+                   onChange={changeMainImg}
+                />
+
+                <div className={classes.main_img_container}>
+                   <img src={mainImg} alt=""/>
+                </div>
+             </div>
+
              <Select
                 value={state.type}
                 label="Type"

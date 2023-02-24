@@ -1,6 +1,5 @@
 import {FC, useContext, useEffect, useState} from 'react'
 import classes from './PageLoader.module.sass'
-import {FetchStatus} from "../../../types/api.types"
 import PageContext from "../../../context/page.context"
 import ReactDOM from 'react-dom'
 import {motion} from 'framer-motion'
@@ -8,15 +7,15 @@ import Loading from "../../Loading/Loading"
 
 
 interface IProps {
-   status: FetchStatus
+   loading?: boolean
    text?: string
 }
 
-const PageLoader:FC<IProps> = ({ status, text = 'Wait a little' }) => {
+const PageLoader:FC<IProps> = ({ loading = true, text = 'Wait a little' }) => {
    const { isCurtainAnimation, globalLoaderAnimation } = useContext(PageContext)
 
    const h1Var = {
-      init: { opacity: 0, y: 20 },
+      init: { opacity: 0, y: 20, transition: { duration: 0 } },
       active: {
          opacity: 1,
          y: 0,
@@ -32,32 +31,28 @@ const PageLoader:FC<IProps> = ({ status, text = 'Wait a little' }) => {
    const { setPageLoader, setPageLoaderAnimation } = useContext(PageContext)
    const [allowClose, setAllowClose] = useState(false)
    const [open, setOpen] = useState(true)
-   const [showAnimation, setShowAnimation] = useState(true)
 
    const cls = [classes.container]
 
-   if (globalLoaderAnimation || !showAnimation)
-      cls.push(classes.closed)
-
-   if (!open && showAnimation)
+   if (!open)
       cls.push(classes.close)
 
    useEffect(() => {
       setPageLoaderAnimation(true)
 
-      setTimeout(() => {
-         setAllowClose(true)
-      }, 350)
-   }, [])
+      if (!globalLoaderAnimation) {
+         setTimeout(() => {
+            setAllowClose(true)
+         }, globalLoaderAnimation ? 1050 : 450)
+      }
+   }, [globalLoaderAnimation])
 
    useEffect(() => {
-      if (status !== FetchStatus.INIT && allowClose)
-         setTimeout(() => {
-            setOpen(false)
-            // Simulating fetch loading
-            setPageLoader(false)
-         }, 800)
-   }, [allowClose, status])
+      if (!loading && allowClose) {
+         setOpen(false)
+         setPageLoader(false)
+      }
+   }, [allowClose, loading])
 
    useEffect(() => {
       if (!open)
@@ -65,14 +60,6 @@ const PageLoader:FC<IProps> = ({ status, text = 'Wait a little' }) => {
             setPageLoaderAnimation(false)
          }, 500)
    }, [open])
-
-   useEffect(() => {
-      if (globalLoaderAnimation) {
-         setPageLoader(false)
-         setPageLoaderAnimation(false)
-         setShowAnimation(false)
-      }
-   }, [globalLoaderAnimation])
 
    const main = document.querySelector('main')
 

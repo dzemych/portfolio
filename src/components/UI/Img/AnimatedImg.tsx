@@ -31,7 +31,7 @@ const AnimatedImg: FC<IProps> =
    const imgRef = useRef<HTMLImageElement | null>(null)
    const ref = useRef(null)
 
-   const { allowAnim, played } = useAnimationStatus(ref, duration * 1000)
+   const { allowAnim, played } = useAnimationStatus(ref, duration * 1200)
 
    const curtainVariants = {
       initial: {

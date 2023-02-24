@@ -3,8 +3,8 @@ import classes from './ImgPreview.module.sass'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import { faXmark, faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons"
 import ReactDOM from "react-dom"
-import ImgPreviwItem from "./ImgPreviewItem";
-import MediaContext from "../../../context/media.context";
+import ImgPreviewItem from "./ImgPreviewItem"
+import MediaContext from "../../../context/media.context"
 
 
 interface IProps {
@@ -83,26 +83,25 @@ const ImgPreview: FC<IProps> = (
       setMoveX(0)
    }
 
-   const nextClick = () => {
-      if (!isZoom) {
-         setPage(prev => {
-            if (prev + 1 > srcArr.length - 1)
-               return prev
+   const changePage = (number: 1 | -1) => {
+      setPage(prev => {
+         const cand = prev + number
 
-            return prev + 1
-         })
-      }
+         if (cand > srcArr.length - 1 || cand < 0)
+            return prev
+
+         return cand
+      })
+   }
+
+   const nextClick = () => {
+      if (!isZoom)
+         changePage(1)
    }
 
    const prevClick = () => {
-      if (!isZoom) {
-         setPage(prev => {
-            if (prev - 1 < 0)
-               return prev
-
-            return prev - 1
-         })
-      }
+      if (!isZoom)
+         changePage(-1)
    }
 
    const keyListener = (e: KeyboardEvent) => {
@@ -212,9 +211,9 @@ const ImgPreview: FC<IProps> = (
             <div className={classes.window}>
                <div className={classes.slider} style={style}>
                   { srcArr.map(el =>
-                     <ImgPreviwItem
+                     <ImgPreviewItem
+                        key={el}
                         src={el}
-                        key={`${el}-${Math.random()}`}
                         blockNav={setIsZoom}
                         moveStatus={status}
                      />

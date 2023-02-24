@@ -5,9 +5,12 @@ import { faEnvelope, faPhone } from "@fortawesome/free-solid-svg-icons"
 import CustomLink from "../CustomLink"
 import {ReactComponent as Logo} from '../../../assets/imgs/logo.svg'
 import MediaContext from "../../../context/media.context"
+import ContactsContext from "../../../context/contacts.context"
 
 
 const Footer:FC = () => {
+   const { telText, tel, email } = useContext(ContactsContext)
+
    const { large } = useContext(MediaContext)
 
    return(
@@ -31,7 +34,7 @@ const Footer:FC = () => {
                         </div>
 
                         <div className={classes.right}>
-                           <a href="mailto:dzemichivan@gmail.com">dzemichivan@gmail.com</a>
+                           <a href={`mailto:${email}`}>{email}</a>
                         </div>
                      </div>
 
@@ -41,7 +44,7 @@ const Footer:FC = () => {
                         </div>
 
                         <div className={classes.right}>
-                           <a href="tel:+48515285228">+48 515 285 228</a>
+                           <a href={`tel:${tel}`}>{ telText }</a>
                         </div>
                      </div>
                   </div>

@@ -16,7 +16,7 @@ interface IProps {
 
 const MainLayout:FC<IProps> = ({ children }) => {
 
-   const { vw } = useContext(MediaContext)
+   const { vw, medium } = useContext(MediaContext)
    const { setGlobalLoaderAnimation } = useContext(PageContext)
 
    const [showHeaderBack, setShowHeaderBack] = useState(false)
@@ -45,7 +45,7 @@ const MainLayout:FC<IProps> = ({ children }) => {
             setTimeout(() => {
                setGlobalLoaderAnimation(false)
             }, 500)
-         }, 500)
+         }, 900)
    }, [])
 
    useEffect(() => {
@@ -61,7 +61,10 @@ const MainLayout:FC<IProps> = ({ children }) => {
          <Curtain/>
 
          <ContactBtn/>
-         <ScrollBtn/>
+
+         { medium &&
+            <ScrollBtn/>
+         }
 
          <div className={headerCls.join(' ')}/>
 

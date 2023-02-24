@@ -4,10 +4,12 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
 import { motion } from 'framer-motion'
 import PageContext from "../../../context/page.context"
+import MediaContext from "../../../context/media.context"
 
 
 const ContactBtn:FC = () => {
 
+   const { medium } = useContext(MediaContext)
    const { changePage } = useContext(PageContext)
    const [showText, setShowText] = useState(false)
 
@@ -29,7 +31,7 @@ const ContactBtn:FC = () => {
              className={classes.back}
              variants={vars}
              initial={'init'}
-             whileHover={'active'}
+             whileHover={medium ? 'active' : ''}
              onHoverStart={() => { setShowText(true) }}
              onHoverEnd={() => { setShowText(false) }}
           >
@@ -40,7 +42,7 @@ const ContactBtn:FC = () => {
             className={classes.text}
             variants={txtVars}
             initial={'init'}
-            animate={ showText ? 'active' : 'hidden' }
+            animate={ medium && (showText ? 'active' : 'hidden') }
          >
             Contact me
          </motion.div>

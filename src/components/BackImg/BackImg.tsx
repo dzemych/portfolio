@@ -11,12 +11,12 @@ interface IProps {
 
 const BackImg:FC<IProps> = ({ photoSrc }) => {
    const imgVar = {
-      init: { opacity: 0 },
+      init: { opacity: 0, transition: { duration: 0 } },
       active: { opacity: 1, transition: { duration: .4 } }
    }
 
    const ref = useRef(null)
-   const { allowAnim, played } = useAnimationStatus(ref, 400)
+   const { allowAnim, played } = useAnimationStatus(ref, 1000)
 
    const [status, setStatus] = useState(FetchStatus.INIT)
 
@@ -29,17 +29,19 @@ const BackImg:FC<IProps> = ({ photoSrc }) => {
    }, [photoSrc])
 
    return(
-      <div className={classes.back}>
-         <motion.img
-            ref={ref}
+      <motion.div
+         className={classes.back}
+         ref={ref}
+         variants={imgVar}
+         initial='init'
+         whileInView={(status === FetchStatus.LOADED && (allowAnim || played)) ? 'active' : 'init' }
+         viewport={{ once: true }}
+      >
+         <img
             src={photoSrc}
             alt=""
-            variants={imgVar}
-            initial='init'
-            whileInView={ ((status === FetchStatus.LOADED && allowAnim) || played) ? 'active' : '' }
-            viewport={{ once: true }}
          />
-      </div>
+      </motion.div>
    )
 }
 

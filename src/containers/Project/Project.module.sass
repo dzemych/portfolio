@@ -1,6 +1,7 @@
 @use 'src/assets/styles/colors'
 @use 'src/assets/styles/media'
 
+
 .container
   width: 100%
 
@@ -166,6 +167,9 @@
       margin-right: 0
 
 @media (min-width: media.$large)
+  .title
+    margin-bottom: 30px
+
   .content
     margin: 60px 45px 0 100px
     & > div:first-child
@@ -173,3 +177,6 @@
 
   .main_text
     font-size: 1.4rem
+
+  .photos_container
+    margin-top: 40px

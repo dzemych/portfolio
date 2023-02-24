@@ -16,10 +16,11 @@ const WithPageLayout: FC<IProps> = ({ children }) => {
    const [isCurtain, setIsCurtain] = useState(false)
    const [isCurtainAnimation, setIsCurtainAnimation] = useState(false)
 
-   const [pageLoader, setPageLoader] = useState(false)
-   const [pageLoaderAnimation, setPageLoaderAnimation] = useState(false)
+   const [pageLoader, setPageLoader] = useState(true)
+   const [pageLoaderAnimation, setPageLoaderAnimation] = useState(true)
 
    const [pagePreLoader, setPagePreLoader] = useState(false)
+   const [isFetchingData, setIsFetchingData] = useState(true)
 
    const [globalLoaderAnimation, setGlobalLoaderAnimation] = useState(true)
 
@@ -81,11 +82,11 @@ const WithPageLayout: FC<IProps> = ({ children }) => {
       const html = document.querySelector('html')
 
       if (html)
-         if (isCurtain || isCurtainAnimation || pageLoaderAnimation)
+         if (isCurtain || isCurtainAnimation || pageLoaderAnimation || globalLoaderAnimation)
             html.style.overflowY = 'hidden'
          else
             html.style.overflowY = 'scroll'
-   }, [isCurtain, isCurtainAnimation, pageLoaderAnimation])
+   }, [isCurtain, isCurtainAnimation, pageLoaderAnimation, globalLoaderAnimation])
 
    useEffect(() => {
       prevPath.current = location.pathname
@@ -103,7 +104,9 @@ const WithPageLayout: FC<IProps> = ({ children }) => {
          setPageLoaderAnimation,
          pagePreLoader,
          globalLoaderAnimation,
-         setGlobalLoaderAnimation
+         setGlobalLoaderAnimation,
+         isFetchingData,
+         setIsFetchingData
       }}>
          { children }
       </PageContext.Provider>

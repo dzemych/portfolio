@@ -16,4 +16,5 @@ export interface IProjectState {
    details: IProjectDetail[]
    photos: string[]
    type: string
+   mainPhoto: string
 }

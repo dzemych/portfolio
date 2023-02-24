@@ -1,69 +1,88 @@
-import {FC, useEffect, useState} from 'react'
-import classes from './About.module.sass'
+import {FC, useContext, useEffect} from "react"
+import classes from "./About.module.sass"
 import PageLoader from "../../components/Navigation/PageLoader/PageLoader"
 import {FetchStatus} from "../../types/api.types"
 import OpacityYDiv from "../../components/UI/OpacityYDiv"
 import OpacityDiv from "../../components/UI/OpacityDiv"
 import NeedDev from "../../components/NeedDev/NeedDev"
+import usePageState from "../../hooks/usePageState"
+import PageContext from "../../context/page.context"
 
 
 const skills = [
    {
-      title: 'Front end Skills',
+      title: "Front end Skills",
       list: [
-         'JavaScript',
-         'HTML',
-         'CSS',
-         'SASS/SCSS',
-         'ReactJS',
-         'TypeScript',
-         'NextJs',
-         'Redux',
-         'ReduxSaga',
-         'Webpack'
+         "JavaScript",
+         "HTML",
+         "CSS",
+         "SASS/SCSS",
+         "ReactJS",
+         "TypeScript",
+         "NextJs",
+         "Redux",
+         "ReduxSaga",
+         "Webpack"
       ],
    },
    {
-     title: 'Back end skills',
+     title: "Back end skills",
      list: [
-        'Linux',
-        'Nginx',
-        'Apache',
-        'Backups with rsync',
-        'Postfix',
-        'Dovecot',
-        'Roundcube'
+        "Linux",
+        "Nginx",
+        "Apache",
+        "Backups with rsync",
+        "Postfix",
+        "Dovecot",
+        "Roundcube"
      ]
    },
    {
-      title: 'Server skills',
+      title: "Server skills",
       list: [
-         'NodeJs',
-         'Express',
-         'NestJs',
-         'MongoDB',
-         'Mongoose',
-         'MySQL',
-         'MariaDB'
+         "NodeJs",
+         "Express",
+         "NestJs",
+         "MongoDB",
+         "Mongoose",
+         "MySQL",
+         "MariaDB"
       ]
    }
 ]
 
 const patterns = [
-   { title: 'OOP', text: 'Object-oriented programming (OOP) is a computer programming model that organizes' },
-   { title: 'KISS', text: 'Object-oriented programming (OOP) is a computer programming model that organizes' },
-   { title: 'BEM', text: 'Object-oriented programming (OOP) is a computer programming model that organizes' }
+   { title: "OOP", text: "Object-oriented programming (OOP) is a computer programming model that organizes" },
+   { title: "KISS", text: "Object-oriented programming (OOP) is a computer programming model that organizes" },
+   { title: "BEM", text: "Object-oriented programming (OOP) is a computer programming model that organizes" }
 ]
 
 const lang = [
-   { title: 'English', text: 'fluent (B2)' },
-   { title: 'Polish', text: 'A1' },
-   { title: 'Ukrainian', text: 'native' },
-   { title: 'Russian', text: 'native' }
+   { title: "English", text: "fluent (B2)" },
+   { title: "Polish", text: "A1" },
+   { title: "Ukrainian", text: "native" },
+   { title: "Russian", text: "native" }
 ]
 
+interface ISkill {
+   title: string
+   list: string[]
+}
+
+interface IPattern {
+   title: string
+   text: string
+}
+
+interface ILang {
+   title: string
+   text: string
+}
+
 const About:FC = () => {
-   const [status, setStatus] = useState(FetchStatus.INIT)
+
+   const { setIsFetchingData } = useContext(PageContext)
+   const { state, status: stateStatus } = usePageState("about")
 
    const renderSkill = (text: string, idx: number, arr: string[]) => (
       <div key={idx}>
@@ -96,7 +115,7 @@ const About:FC = () => {
 
    const renderLang = (title: string, text: string) => (
       <OpacityYDiv className={classes.pattern_item} key={title}>
-         <p className={classes.pattern_text} style={{ margin: '8px 0' }}>
+         <p className={classes.pattern_text} style={{ margin: "8px 0" }}>
             <span className={classes.pattern_subtitle}>{title}</span>
 
             &nbsp;— {text}
@@ -105,12 +124,14 @@ const About:FC = () => {
    )
 
    useEffect(() => {
-      setStatus(FetchStatus.LOADED)
-   }, [])
+      if (stateStatus !== FetchStatus.INIT) {
+         setIsFetchingData(false)
+      }
+   }, [stateStatus])
 
    return(
       <div className={classes.container}>
-         <PageLoader status={status} text={'Read about me'}/>
+         <PageLoader text={"Read about me"} loading={stateStatus === FetchStatus.INIT}/>
 
          <OpacityYDiv>
             <h1 className={classes.title}>About me</h1>
@@ -118,12 +139,12 @@ const About:FC = () => {
 
          <OpacityYDiv>
             <p className={classes.text}>
-               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque iste nisi officiis voluptas. Alias aperiam, corporis dicta dolorem inventore libero magni maxime minus officiis possimus quas qui quis similique temporibus?
+               {state && state.text}
             </p>
          </OpacityYDiv>
 
          <div className={classes.skill_section}>
-            { skills.map((el) => renderSkillBlock(el.title, el.list)) }
+            { state && state.skills.map((el: ISkill) => renderSkillBlock(el.title, el.list)) }
          </div>
 
          <OpacityDiv>
@@ -135,7 +156,7 @@ const About:FC = () => {
          </OpacityYDiv>
 
          <div className={classes.pattern_section}>
-            {patterns.map(el => renderPattern(el.title, el.text))}
+            {state && state.patterns.map((el: IPattern) => renderPattern(el.title, el.text))}
          </div>
 
          <OpacityDiv>
@@ -143,10 +164,10 @@ const About:FC = () => {
          </OpacityDiv>
 
          <OpacityYDiv>
-            <h3 className={classes.pattern_title + ' ' + classes.lang_title}>Language skills</h3>
+            <h3 className={classes.pattern_title + " " + classes.lang_title}>Language skills</h3>
 
             <div className={classes.lang_section}>
-               {lang.map(el => renderLang(el.title, el.text))}
+               {state && state.lang.map((el: ILang) => renderLang(el.title, el.text))}
             </div>
          </OpacityYDiv>
 

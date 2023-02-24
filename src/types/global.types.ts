@@ -1,0 +1,1 @@
+export type ObjWithStrKeys = { [key: string]: any }

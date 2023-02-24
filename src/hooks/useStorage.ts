@@ -5,7 +5,8 @@ import {storage} from "../firebase"
 type HookUseStorage = () => {
    getUrls: (arr: string[]) => Promise<string[]>
    getOneUrl: (path: string) => Promise<string>
-   loadImg: (slug: string, img: File) => Promise<string>
+   uploadProjectImg: (slug: string, img: File) => Promise<string>
+   uploadFile: (path: string, img: File) => Promise<string>
    deleteFile: (path: string) => void
 }
 
@@ -24,7 +25,7 @@ const useStorage: HookUseStorage = () => {
       return await getDownloadURL(stRef(storage, path))
    }
 
-   const loadImg = async (slug: string, img: File) => {
+   const uploadProjectImg = async (slug: string, img: File) => {
       const newPath = `projects/${slug}/${getUid()}`
       const storageRef = stRef(storage, newPath)
 
@@ -33,11 +34,19 @@ const useStorage: HookUseStorage = () => {
       return newPath
    }
 
+   const uploadFile = async (path: string, img: File) => {
+      const storageRef = stRef(storage, path)
+
+      await uploadBytes(storageRef, img)
+
+      return path
+   }
+
    const deleteFile = async (path: string) => {
       await deleteObject(stRef(storage, path))
    }
 
-   return { getOneUrl, getUrls, loadImg, deleteFile }
+   return { getOneUrl, getUrls, uploadProjectImg, deleteFile, uploadFile }
 }
 
 
