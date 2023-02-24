@@ -9,13 +9,19 @@ import ContactsContext from "../../../context/contacts.context"
 
 
 const Footer:FC = () => {
-   const { telText, tel, email } = useContext(ContactsContext)
+   const { telText, tel, email, resumeUrl } = useContext(ContactsContext)
 
    const { large } = useContext(MediaContext)
 
    return(
       <footer className={classes.container}>
          <div className={classes.wrapper}>
+
+            <a href={resumeUrl} download target='_blank' className={classes.resume}>
+               <h4>
+                  — Download resume —
+               </h4>
+            </a>
 
             <div className={classes.section}>
                <div className={classes.block}>

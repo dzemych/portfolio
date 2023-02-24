@@ -58,6 +58,14 @@ const Admin:FC = () => {
       }
    }
 
+   const uploadResume = (e: ChangeEvent<HTMLInputElement>) => {
+      const files = e.target.files
+
+      if (files && files.length) {
+         uploadFile('Dzemych Ivan - Web Developer', files[0])
+      }
+   }
+
    useEffect(() => {
       const fetchMainImg = async () => {
          await onValue(ref(db, 'mainPhoto/imgPath'), async (snapshot) => {
@@ -77,6 +85,16 @@ const Admin:FC = () => {
           <PageLoader loading={false}/>
 
           <h1>Admin</h1>
+
+          <div>
+             <label htmlFor="resume">Resume</label>
+             <input
+                name="resume"
+                type="file"
+                accept={"application/pdf"}
+                onChange={uploadResume}
+             />
+          </div>
 
           <section className={classes.section}>
              <h2>Main img</h2>

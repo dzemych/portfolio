@@ -34,10 +34,10 @@ const useStorage: HookUseStorage = () => {
       return newPath
    }
 
-   const uploadFile = async (path: string, img: File) => {
+   const uploadFile = async (path: string, file: File) => {
       const storageRef = stRef(storage, path)
 
-      await uploadBytes(storageRef, img)
+      await uploadBytes(storageRef, file)
 
       return path
    }

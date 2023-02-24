@@ -9,61 +9,6 @@ import usePageState from "../../hooks/usePageState"
 import PageContext from "../../context/page.context"
 
 
-const skills = [
-   {
-      title: "Front end Skills",
-      list: [
-         "JavaScript",
-         "HTML",
-         "CSS",
-         "SASS/SCSS",
-         "ReactJS",
-         "TypeScript",
-         "NextJs",
-         "Redux",
-         "ReduxSaga",
-         "Webpack"
-      ],
-   },
-   {
-     title: "Back end skills",
-     list: [
-        "Linux",
-        "Nginx",
-        "Apache",
-        "Backups with rsync",
-        "Postfix",
-        "Dovecot",
-        "Roundcube"
-     ]
-   },
-   {
-      title: "Server skills",
-      list: [
-         "NodeJs",
-         "Express",
-         "NestJs",
-         "MongoDB",
-         "Mongoose",
-         "MySQL",
-         "MariaDB"
-      ]
-   }
-]
-
-const patterns = [
-   { title: "OOP", text: "Object-oriented programming (OOP) is a computer programming model that organizes" },
-   { title: "KISS", text: "Object-oriented programming (OOP) is a computer programming model that organizes" },
-   { title: "BEM", text: "Object-oriented programming (OOP) is a computer programming model that organizes" }
-]
-
-const lang = [
-   { title: "English", text: "fluent (B2)" },
-   { title: "Polish", text: "A1" },
-   { title: "Ukrainian", text: "native" },
-   { title: "Russian", text: "native" }
-]
-
 interface ISkill {
    title: string
    list: string[]
@@ -139,7 +84,7 @@ const About:FC = () => {
 
          <OpacityYDiv>
             <p className={classes.text}>
-               {state && state.text}
+               {state && state.title}
             </p>
          </OpacityYDiv>
 
@@ -152,7 +97,7 @@ const About:FC = () => {
          </OpacityDiv>
 
          <OpacityYDiv>
-            <h3 className={classes.pattern_title}>Patterns I use</h3>
+            <h3 className={classes.pattern_title}>Principles I use</h3>
          </OpacityYDiv>
 
          <div className={classes.pattern_section}>

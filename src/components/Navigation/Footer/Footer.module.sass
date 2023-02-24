@@ -10,6 +10,17 @@
   width: 100%
   border-top: 1px solid colors.$light_gray
 
+.resume
+  display: block
+  margin: 0 auto
+  width: fit-content
+  text-align: center
+  color: #1a1b23
+  font-size: 1.5rem
+  & h4
+    margin-bottom: 0
+    margin-top: 28px
+
 .section
   display: flex
   flex-direction: column
@@ -108,6 +119,11 @@
   .wrapper
     padding-top: 10px
 
+  .resume h4
+    font-size: 1.8rem
+    margin-bottom: 15px
+    margin-top: 30px
+
   .section
     flex-direction: row
     width: 100%
@@ -138,6 +154,14 @@
 @media (min-width: media.$large)
   .container
     padding: 80px 40px 60px
+
+  .resume h4
+    font-size: 2rem
+    margin-bottom: 22px
+    transition: 280ms
+    &:hover
+      scale: 1.1
+      //color: #4b4949
 
   .text
     font-size: 1.25rem

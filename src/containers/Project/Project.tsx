@@ -172,17 +172,21 @@ const Project:FC = () => {
          </section>
 
          <section className={classes.photos_container}>
-            { photosUrls.length &&
-               <ImgPreview
+            { photosUrls.length
+               ? <ImgPreview
                   srcArr={photosUrls}
                   open={imgPreview}
                   close={toggleImgPreview}
                   startAt={page}
                />
+               : null
             }
 
             <div className={classes.list}>
-               { photosUrls?.length && photosUrls.map((el, i) => renderPhoto(el, i)) }
+               { photosUrls?.length
+                  ? photosUrls.map((el, i) => renderPhoto(el, i))
+                  : null
+               }
             </div>
          </section>
 
