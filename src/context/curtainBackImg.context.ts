@@ -2,9 +2,9 @@ import {createContext} from "react"
 
 
 export enum CurtainPageImg {
-   ABOUT = 'about',
-   CONTACTS =  'contacts',
-   PROJECTS = 'projects',
+   // ABOUT = 'about',
+   // CONTACTS =  'contacts',
+   // PROJECTS = 'projects',
    DEFAULT = 'default'
 }
 

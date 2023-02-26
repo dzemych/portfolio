@@ -93,10 +93,9 @@ const Project:FC = () => {
    )
 
    const getSiteDomain = (url: string) => {
-      const dom = url.match(/(?<=[http|https]:\/\/).*/)
-
-      if (dom && dom[0])
-         return dom[0]
+      const dom = url.split('/').slice(2).join('/')
+      if (dom)
+         return dom
 
       return url
    }

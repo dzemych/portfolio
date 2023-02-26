@@ -1,5 +1,5 @@
 import React, {CSSProperties, ReactNode, RefObject} from "react"
-import {MotionStyle, Variants, MotionProps} from "framer-motion"
+import {Variants} from "framer-motion"
 
 
 export interface IElProps {

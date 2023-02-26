@@ -6,12 +6,9 @@ import {FetchStatus} from "../types/api.types"
 type HookUseDb = () => {
    getData: (path: string) => Promise<any>
    updateData: (path: string, data: any) => void
-   status: FetchStatus
 }
 
 const useDb:HookUseDb = () => {
-
-   const [status, setStatus] = useState(FetchStatus.INIT)
 
    const getData = async (path: string) => {
       const dbRef = ref(db, path)
@@ -33,7 +30,7 @@ const useDb:HookUseDb = () => {
       update(dbRef, data)
    }
 
-   return { status, getData, updateData }
+   return { getData, updateData }
 }
 
 export default useDb

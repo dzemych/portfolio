@@ -1,9 +1,7 @@
-import {FC, useEffect, useState} from 'react'
+import {FC} from 'react'
 import classes from './List.module.sass'
 import ListItem from "./ListItem/ListItem"
-import im from '../../assets/imgs/1.jpg'
 import OpacityYDiv from "../UI/OpacityYDiv"
-import {FetchStatus} from "../../types/api.types"
 
 
 interface IProps {

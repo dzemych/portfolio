@@ -1,4 +1,4 @@
-import {RefObject, useContext, useEffect, useRef, useState} from "react"
+import {RefObject, useContext, useEffect, useState} from "react"
 import {useInView} from "framer-motion"
 import PageContext from "../../context/page.context"
 

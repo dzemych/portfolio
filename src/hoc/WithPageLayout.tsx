@@ -1,6 +1,7 @@
-import {FC, ReactNode, useEffect, useRef, useState} from "react"
+import {FC, ReactNode, useContext, useEffect, useRef, useState} from "react"
 import PageContext from "../context/page.context"
 import {useLocation, useNavigate} from "react-router-dom"
+import MediaContext from "../context/media.context"
 
 
 interface IProps {
@@ -8,6 +9,8 @@ interface IProps {
 }
 
 const WithPageLayout: FC<IProps> = ({ children }) => {
+   const { ios } = useContext(MediaContext)
+
    const navigate = useNavigate()
    const location = useLocation()
 
@@ -26,16 +29,19 @@ const WithPageLayout: FC<IProps> = ({ children }) => {
 
    const changePage = async (to: string) => {
       if (!isCurtain && prevPath.current === to)
-         window.scrollTo(0, 0)
+         window.scroll(0, 0)
 
       if (!isCurtain && prevPath.current !== to){
          await setPagePreLoader(true)
 
+         if (ios)
+            window.scroll(0, 0)
+
          setTimeout(async () => {
+            window.scroll(0, 0)
+
             await setPageLoader(true)
             navigate(to)
-
-            window.scrollTo(0, 0)
             setPagePreLoader(false)
             prevPath.current = to
          }, 500)
@@ -50,7 +56,7 @@ const WithPageLayout: FC<IProps> = ({ children }) => {
                setIsCurtainAnimation(false)
             }, 500)
          } else {
-            window.scrollTo(0, 0)
+            window.scroll(0, 0)
             await setPageLoader(true)
 
             navigate(to)

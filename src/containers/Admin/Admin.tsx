@@ -10,7 +10,6 @@ import useStorage from "../../hooks/useStorage"
 import {onValue, ref} from "firebase/database"
 import {db} from "../../firebase"
 import PageLoader from "../../components/Navigation/PageLoader/PageLoader"
-import {FetchStatus} from "../../types/api.types"
 
 
 const titlesInit = {
@@ -66,6 +65,15 @@ const Admin:FC = () => {
       }
    }
 
+   const changeImgPc = async (e: ChangeEvent<HTMLInputElement>) => {
+      const files = e.target.files
+
+      if (files && files.length) {
+         const imgPath = await uploadFile('mainPhoto_pc', files[0])
+         updateData('mainPhotoPc', { imgPath })
+      }
+   }
+
    useEffect(() => {
       const fetchMainImg = async () => {
          await onValue(ref(db, 'mainPhoto/imgPath'), async (snapshot) => {
@@ -93,6 +101,16 @@ const Admin:FC = () => {
                 type="file"
                 accept={"application/pdf"}
                 onChange={uploadResume}
+             />
+          </div>
+
+          <div>
+             <label htmlFor="image_pc">Image pc</label>
+             <input
+                name="image_pc"
+                type="file"
+                accept={'image/*'}
+                onChange={changeImgPc}
              />
           </div>
 

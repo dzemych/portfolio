@@ -1,6 +1,15 @@
 import {createContext} from "react"
-import {IMediaBreakPoints} from "../types/media.types"
 
+
+export interface IMediaBreakPoints {
+   extSmall: boolean
+   small: boolean
+   medium: boolean
+   large: boolean
+   extLarge: boolean
+   vw: number
+   ios: boolean
+}
 
 const MediaContext = createContext<IMediaBreakPoints>({
    extSmall: false,
@@ -8,7 +17,8 @@ const MediaContext = createContext<IMediaBreakPoints>({
    medium: false,
    large: false,
    extLarge: false,
-   vw: 0
+   vw: 0,
+   ios: false
 })
 
 export default MediaContext

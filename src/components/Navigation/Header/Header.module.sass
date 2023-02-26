@@ -34,21 +34,24 @@ $animation_time: 400ms forwards
   flex-direction: row
   justify-content: space-between
   width: 100%
-  height: 85px
+  height: 82px
   padding: 20px 14px
 
 .logo_wrapper
-  left: 0
-  top: 0
-  width: 100px
+  position: relative
   cursor: pointer
   display: flex
   flex-direction: row
   align-items: center
+  width: 198px
   transition-delay: 60ms
   transition-duration: 30ms
 
 .logo_icon
+  position: absolute
+  top: 0
+  left: 0
+  display: block
   height: 100%
   & svg
     height: 100%
@@ -56,9 +59,13 @@ $animation_time: 400ms forwards
     width: auto
 
 .logo_title
+  position: absolute
+  top: 50%
+  right: 0
+  transform: translateY(-50%)
+  display: block
   height: 75%
-  margin-left: 13px
-  width: 100%
+  width: fit-content
   & svg
     height: 100%
     display: block
@@ -77,21 +84,22 @@ $animation_time: 400ms forwards
   font-family: "Helvetica ExtBold", sans-serif
   font-size: 12px
 
-@media (max-width: 360px)
-  .logo_icon
-    height: 0
-    width: 0
-
 @media (min-width: 770px)
   .wrapper
     height: 90px
     padding: 30px 30px 15px
+
+  .logo_wrapper
+    width: 214px
 
 @media (min-width: media.$large)
   .wrapper
     height: 105px
     padding-top: 40px
     padding-bottom: 16px
+
+  .logo_wrapper
+    width: 230px
 
   .container
     z-index: 10

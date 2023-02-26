@@ -1,5 +1,5 @@
 import {useEffect, useMemo, useState} from "react"
-import {IMediaBreakPoints} from "../types/media.types"
+import {IMediaBreakPoints} from "../context/media.context"
 
 
 const initialBreakPoints: IMediaBreakPoints = {
@@ -8,7 +8,8 @@ const initialBreakPoints: IMediaBreakPoints = {
    medium: false,
    large: false,
    extLarge: false,
-   vw: 0
+   vw: 0,
+   ios: false
 }
 
 const useMedia = (): IMediaBreakPoints => {
@@ -17,6 +18,8 @@ const useMedia = (): IMediaBreakPoints => {
    const md = 900
    const lg = 1200
    const xl = 1536
+
+   const [ios, setIos] = useState(false)
 
    const [vw, setVw] = useState(0)
    const handleResize = () => setVw(window.innerWidth)
@@ -59,7 +62,22 @@ const useMedia = (): IMediaBreakPoints => {
       })
    }, [vw])
 
-   return { extSmall, small, medium, large, extLarge, vw }
+   useEffect(() => {
+      const isIos = [
+            'iPad Simulator',
+            'iPhone Simulator',
+            'iPod Simulator',
+            'iPad',
+            'iPhone',
+            'iPod'
+         ].includes(navigator.platform)
+         // iPad on iOS 13 detection
+         || (navigator.userAgent.includes("Mac") && "ontouchend" in document)
+
+      setIos(isIos)
+   }, [navigator])
+
+   return { extSmall, small, medium, large, extLarge, vw, ios }
 }
 
 export default useMedia

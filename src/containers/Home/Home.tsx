@@ -43,9 +43,8 @@ const Home:FC = () => {
          setMainImg(url)
       }
 
-      if (state?.mainPhoto && !mainImg) {
-         fetchPhoto(state.mainPhoto)
-      }
+      if (state?.mainPhoto && !mainImg)
+         fetchPhoto(state.mainPhotoPc)
    }, [state])
 
    useEffect(() => {

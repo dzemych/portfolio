@@ -17,7 +17,8 @@ const usePageState: HookUseDbState = (page) => {
    const fetchProjects = (val: any) => {
       let newState: ObjWithStrKeys = {
          title: val.titles[page],
-         mainPhoto: val.mainPhoto.imgPath
+         mainPhoto: val.mainPhoto.imgPath,
+         mainPhotoPc: val.mainPhotoPc.imgPath
       }
 
       const list = val.projects

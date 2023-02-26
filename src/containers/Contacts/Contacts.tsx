@@ -1,4 +1,4 @@
-import {FC, useContext, useEffect, useState} from 'react'
+import {FC, useContext, useEffect} from 'react'
 import classes from './Contacts.module.sass'
 import PageLoader from "../../components/Navigation/PageLoader/PageLoader"
 import {FetchStatus} from "../../types/api.types"

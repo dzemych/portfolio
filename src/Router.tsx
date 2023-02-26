@@ -21,12 +21,12 @@ const Router:FC = () => {
          <Route path={'/projects'} element={ <Home/> }/>
          <Route path={'/projects/:slug'} element={ <Project/> }/>
          <Route path={'/:slug'} element={ <Project/> }/>
-         { true
+         { isAuth
             ? <>
                <Route path={'/admin'} element={ <Admin/> }/>
                <Route path={'/admin/:slug'} element={ <EditProject/> }/>
             </>
-            : <Route path={'/admin'} element={ <Admin/> }/>
+            : <Route path={'/admin'} element={ <Auth/> }/>
          }
       </Routes>
    )
