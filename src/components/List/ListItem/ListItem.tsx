@@ -56,7 +56,6 @@ const ListItem:FC<IProps> = ({ title, beforeTitle, dbPhotoSrc, slug }) => {
                   className={classes.img_loader}
                   initial={'init'}
                   animate={status === FetchStatus.INIT ? 'active' : 'init'}
-                  // animate={'active'}
                >
                   <Loading/>
                </motion.div>

@@ -105,14 +105,14 @@ const Home:FC = () => {
                </div>
             </OpacityYDiv>
 
-            { state?.projects &&
-               <List id={'projects-list'} title={'Projects'} arr={state.projects}/>
+            { state?.works &&
+               <List id={'projects-list'} title={'Work places'} arr={state.works}/>
             }
 
             <hr className={classes.hr}/>
 
-            { state?.works &&
-               <List id={'projects-list'} title={'Work places'} arr={state.works}/>
+            { state?.projects &&
+               <List id={'projects-list'} title={'Projects'} arr={state.projects}/>
             }
 
          <NeedDev/>

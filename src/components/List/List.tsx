@@ -11,6 +11,8 @@ interface IProps {
 }
 
 const List:FC<IProps> = ({ id, title, arr= [] }) => {
+   console.log(arr)
+
    return(
       <div className={classes.container} id={id}>
          <OpacityYDiv>
@@ -25,7 +27,7 @@ const List:FC<IProps> = ({ id, title, arr= [] }) => {
                   key={el.slug}
                   title={el.title}
                   dbPhotoSrc={el.mainPhoto}
-                  beforeTitle={'05/2018 - 11/2020'}
+                  beforeTitle={el.beforeTitle}
                   slug={el.slug}
                />
             )) }
